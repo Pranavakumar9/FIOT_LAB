@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 780" width="1150" height="780" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1130" height="760" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1130" height="48" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">STM32 NUCLEO-F401RE (Cortex-M4) GPIO &amp; User Interface</text>
+  <text x="960" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT11: Week 11 Lab</text>
+
+  <!-- Legend -->
+  <rect x="870" y="75" width="250" height="210" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="885" y="98" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT PIN CONNECTIONS</text>
+  <line x1="885" y1="104" x2="1105" y2="104" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="895" cy="122" r="5" fill="#27ae60"/>
+  <text x="910" y="126" fill="#333" font-size="12">PA5: On-Board User LED (LD2)</text>
+  <text x="910" y="142" fill="#7f8c8d" font-size="10" font-style="italic">Active-HIGH (Set = ON)</text>
+  <circle cx="895" cy="162" r="5" fill="#2980b9"/>
+  <text x="910" y="166" fill="#333" font-size="12">PC13: User Push-Button (B1)</text>
+  <text x="910" y="182" fill="#7f8c8d" font-size="10" font-style="italic">Active-LOW (Blue Button)</text>
+  <circle cx="895" cy="202" r="5" fill="#8e44ad"/>
+  <text x="910" y="206" fill="#333" font-size="12">ST-LINK/V2-1: On-board USB</text>
+  <text x="885" y="235" fill="#7f8c8d" font-size="11" font-style="italic">Core: ARM Cortex-M4 @ 84 MHz</text>
+  <text x="885" y="251" fill="#7f8c8d" font-size="11" font-style="italic">No external wiring required</text>
+  <text x="885" y="267" fill="#7f8c8d" font-size="11" font-style="italic">Arduino Uno v3 Header layout</text>
+
+  <!-- Nucleo Board Graphic (Center) -->
+  <g transform="translate(180, 85)">
+    <rect x="0" y="0" width="650" height="640" rx="12" fill="#f4f6f7" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="220" y="35" fill="#2c3e50" font-size="18" font-weight="bold">NUCLEO-F401RE</text>
+    <text x="245" y="55" fill="#7f8c8d" font-size="12">STM32F401RET6 (LQFP64)</text>
+
+    <!-- Top ST-LINK Debugger section -->
+    <rect x="30" y="70" width="590" height="110" rx="6" fill="#ffffff" stroke="#bdc3c7" stroke-width="1.5"/>
+    <rect x="250" y="55" width="150" height="30" rx="3" fill="#95a5a6"/>
+    <text x="275" y="75" fill="#2c3e50" font-size="11" font-weight="bold">Mini-USB ST-LINK</text>
+    <text x="50" y="110" fill="#2c3e50" font-size="13" font-weight="bold">Embedded ST-LINK/V2-1 Debugger</text>
+    <text x="50" y="130" fill="#7f8c8d" font-size="11">Provides Virtual COM Port &amp; SWD Hardware Flashing</text>
+
+    <!-- Main MCU section below cut line -->
+    <line x1="30" y1="195" x2="620" y2="195" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="6"/>
+
+    <!-- MCU Chip representation -->
+    <rect x="225" y="270" width="200" height="200" rx="6" fill="#1c2833" stroke="#95a5a6" stroke-width="2"/>
+    <text x="255" y="365" fill="#ffffff" font-size="16" font-weight="bold">STM32F401RE</text>
+    <text x="260" y="390" fill="#bdc3c7" font-size="12">Cortex-M4 + FPU @ 84MHz</text>
+
+    <!-- Morpho Headers Left -->
+    <rect x="40" y="220" width="45" height="380" fill="#2c3e50" rx="3"/>
+    <text x="35" y="210" fill="#2c3e50" font-size="10" font-weight="bold">CN7 (Morpho)</text>
+
+    <!-- Morpho Headers Right -->
+    <rect x="565" y="220" width="45" height="380" fill="#2c3e50" rx="3"/>
+    <text x="545" y="210" fill="#2c3e50" font-size="10" font-weight="bold">CN10 (Morpho)</text>
+
+    <!-- User LED LD2 (PA5) -->
+    <g transform="translate(130, 320)">
+      <rect x="0" y="0" width="70" height="50" rx="4" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+      <circle cx="35" cy="20" r="10" fill="#2ecc71"/>
+      <text x="18" y="42" fill="#27ae60" font-size="11" font-weight="bold">LD2 (PA5)</text>
+    </g>
+    <text x="110" y="390" fill="#2c3e50" font-size="10">Active-HIGH Green LED</text>
+
+    <!-- Blue Button B1 (PC13) -->
+    <g transform="translate(130, 480)">
+      <rect x="0" y="0" width="70" height="50" rx="4" fill="#ffffff" stroke="#2980b9" stroke-width="2"/>
+      <circle cx="35" cy="25" r="14" fill="#3498db"/>
+      <text x="18" y="44" fill="#ffffff" font-size="10" font-weight="bold">USER</text>
+    </g>
+    <text x="115" y="550" fill="#2980b9" font-size="11" font-weight="bold">B1 (PC13 Button)</text>
+    <text x="120" y="565" fill="#7f8c8d" font-size="10">Active-LOW</text>
+
+    <!-- Black Reset Button B2 -->
+    <g transform="translate(450, 480)">
+      <rect x="0" y="0" width="70" height="50" rx="4" fill="#ffffff" stroke="#e74c3c" stroke-width="2"/>
+      <circle cx="35" cy="25" r="14" fill="#2c3e50"/>
+      <text x="15" y="44" fill="#ffffff" font-size="10" font-weight="bold">RESET</text>
+    </g>
+    <text x="445" y="550" fill="#e74c3c" font-size="11" font-weight="bold">B2 (RESET Button)</text>
+  </g>
+</svg>
