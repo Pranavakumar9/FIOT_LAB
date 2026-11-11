@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="1100" height="750" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1080" height="730" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1080" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">AT89S52 Human-Machine Interface (4x4 Keypad + 7-Seg + 4-LED Bus)</text>
+  <text x="910" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT4: Week 3 Lab</text>
+
+  <!-- Legend Box -->
+  <rect x="830" y="70" width="240" height="180" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="845" y="92" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT PIN ASSIGNMENTS</text>
+  <line x1="845" y1="98" x2="1055" y2="98" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="855" cy="115" r="5" fill="#e67e22"/>
+  <text x="870" y="119" fill="#333" font-size="12">Port 1: 4x4 Keypad (R:P1.0-3, C:P1.4-7)</text>
+  <circle cx="855" cy="135" r="5" fill="#8e44ad"/>
+  <text x="870" y="139" fill="#333" font-size="12">Port 0: 7-Seg Display (P0.0-P0.7)</text>
+  <circle cx="855" cy="155" r="5" fill="#27ae60"/>
+  <text x="870" y="159" fill="#333" font-size="12">Port 2: 4-Channel LEDs (P2.0-P2.3)</text>
+  <circle cx="855" cy="175" r="5" fill="#e74c3c"/>
+  <text x="870" y="179" fill="#333" font-size="12">VCC (+5V) / GND (0V)</text>
+  <text x="845" y="215" fill="#7f8c8d" font-size="10" font-style="italic">Port 0 requires external 10k pull-up pack</text>
+
+  <!-- 4x4 Matrix Keypad Block (Left) -->
+  <g transform="translate(40, 100)">
+    <rect x="0" y="0" width="240" height="260" rx="6" fill="#fff9db" stroke="#f59f00" stroke-width="2"/>
+    <text x="20" y="28" fill="#d9480f" font-size="14" font-weight="bold">4x4 Matrix Keypad</text>
+    
+    <!-- Keypad grid buttons -->
+    <rect x="25" y="45" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="40" y="70" font-weight="bold" fill="#333">1</text>
+    <rect x="75" y="45" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="90" y="70" font-weight="bold" fill="#333">2</text>
+    <rect x="125" y="45" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="140" y="70" font-weight="bold" fill="#333">3</text>
+    <rect x="175" y="45" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="190" y="70" font-weight="bold" fill="#e67e22">A</text>
+
+    <rect x="25" y="95" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="40" y="120" font-weight="bold" fill="#333">4</text>
+    <rect x="75" y="95" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="90" y="120" font-weight="bold" fill="#333">5</text>
+    <rect x="125" y="95" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="140" y="120" font-weight="bold" fill="#333">6</text>
+    <rect x="175" y="95" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="190" y="120" font-weight="bold" fill="#e67e22">B</text>
+
+    <rect x="25" y="145" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="40" y="170" font-weight="bold" fill="#333">7</text>
+    <rect x="75" y="145" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="90" y="170" font-weight="bold" fill="#333">8</text>
+    <rect x="125" y="145" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="140" y="170" font-weight="bold" fill="#333">9</text>
+    <rect x="175" y="145" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="190" y="170" font-weight="bold" fill="#e67e22">C</text>
+
+    <rect x="25" y="195" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="40" y="220" font-weight="bold" fill="#e67e22">*</text>
+    <rect x="75" y="195" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="90" y="220" font-weight="bold" fill="#333">0</text>
+    <rect x="125" y="195" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="140" y="220" font-weight="bold" fill="#e67e22">#</text>
+    <rect x="175" y="195" width="40" height="40" rx="4" fill="#ffffff" stroke="#f59f00"/><text x="190" y="220" font-weight="bold" fill="#e67e22">D</text>
+
+    <text x="25" y="250" fill="#7f8c8d" font-size="10">Row: P1.0-P1.3 | Col: P1.4-P1.7</text>
+  </g>
+
+  <!-- Wiring Bus from Keypad to Port 1 -->
+  <line x1="280" y1="230" x2="420" y2="230" stroke="#f59f00" stroke-width="4"/>
+  <text x="310" y="220" fill="#d9480f" font-size="12" font-weight="bold">8-bit Bus -> Port 1</text>
+
+  <!-- AT89S52 MCU Package Outline (DIP-40) -->
+  <rect x="420" y="80" width="260" height="620" rx="6" fill="#f4f6f9" stroke="#2c3e50" stroke-width="2.5"/>
+  <path d="M 530 80 A 20 20 0 0 1 570 80 Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <text x="550" y="115" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold">AT89S52</text>
+  <text x="550" y="135" text-anchor="middle" fill="#7f8c8d" font-size="12">DIP-40 Package</text>
+
+  <!-- Port 1 Pins (Left) -->
+  <text x="430" y="190" fill="#d9480f" font-size="12" font-weight="bold">P1.0 - P1.7 (Pins 1-8)</text>
+  <text x="430" y="210" fill="#555" font-size="10">Keypad Scan Interface</text>
+
+  <!-- Port 0 Pins (Right) -->
+  <line x1="680" y1="200" x2="800" y2="200" stroke="#8e44ad" stroke-width="4"/>
+  <text x="700" y="190" fill="#8e44ad" font-size="12" font-weight="bold">Port 0 (Pins 32-39)</text>
+  <text x="700" y="220" fill="#555" font-size="10">7-Segment Bus (a-g, dp)</text>
+
+  <!-- Port 2 Pins (Right) -->
+  <line x1="680" y1="460" x2="800" y2="460" stroke="#27ae60" stroke-width="3"/>
+  <text x="700" y="450" fill="#27ae60" font-size="12" font-weight="bold">Port 2.0-2.3 (Pins 21-24)</text>
+  <text x="700" y="480" fill="#555" font-size="10">4-LED Indicator Bus</text>
+
+  <!-- 7-Segment Display Module (Right Top) -->
+  <g transform="translate(800, 260)">
+    <rect x="0" y="0" width="220" height="150" rx="6" fill="#fcfcfc" stroke="#8e44ad" stroke-width="2"/>
+    <text x="15" y="24" fill="#8e44ad" font-size="13" font-weight="bold">Common-Anode 7-Segment</text>
+    
+    <!-- 7-seg digit figure '8' -->
+    <rect x="40" y="38" width="50" height="70" rx="3" fill="#333333"/>
+    <text x="50" y="90" fill="#e74c3c" font-size="50" font-weight="bold">5</text>
+
+    <text x="105" y="55" fill="#333" font-size="11">Active-LOW Segments</text>
+    <text x="105" y="75" fill="#333" font-size="11">P0.0 = a, P0.1 = b</text>
+    <text x="105" y="95" fill="#333" font-size="11">P0.2 = c, P0.3 = d...</text>
+    <text x="105" y="115" fill="#7f8c8d" font-size="10">10k Resistor Pull-up pack</text>
+  </g>
+
+  <!-- 4-LED Indicator Module (Right Bottom) -->
+  <g transform="translate(800, 480)">
+    <rect x="0" y="0" width="250" height="170" rx="6" fill="#fcfcfc" stroke="#27ae60" stroke-width="2"/>
+    <text x="15" y="24" fill="#27ae60" font-size="13" font-weight="bold">4-Channel Mode LEDs</text>
+    
+    <circle cx="35" cy="55" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+    <text x="55" y="60" fill="#333" font-size="11">LED 1 (P2.0): Key 1 / Chaser</text>
+    
+    <circle cx="35" cy="85" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+    <text x="55" y="90" fill="#333" font-size="11">LED 2 (P2.1): Key 2 / Binary</text>
+    
+    <circle cx="35" cy="115" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+    <text x="55" y="120" fill="#333" font-size="11">LED 3 (P2.2): Key 3 / Alternating</text>
+    
+    <circle cx="35" cy="145" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+    <text x="55" y="150" fill="#333" font-size="11">LED 4 (P2.3): Key 4 / Flash</text>
+  </g>
+
+  <!-- Operational Flow Footer -->
+  <rect x="40" y="660" width="1020" height="60" rx="4" fill="#eef2f7" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="682" fill="#1b2a4a" font-size="12" font-weight="bold">HMI WORKFLOW: Key 1-4: Direct LED ON | Key 5: Running Chaser | Key 6: Alternate (1010/0101) | Key 7: Binary Count</text>
+  <text x="60" y="702" fill="#555" font-size="11">Key 8: All Blink | Key 9: All LEDs OFF | Key 0: System Reset | 7-Segment updates dynamically to match key pressed</text>
+</svg>
