@@ -1,0 +1,114 @@
+[
+  {
+    "id": "tab_cat10_http",
+    "type": "tab",
+    "label": "CAT10 - ESP8266 HTTP Polling Client",
+    "disabled": false,
+    "info": "Node-RED client workflow polling the STM32 + Wemos ESP8266 TCP Web Server on port 80."
+  },
+  {
+    "id": "node_inject_poll",
+    "type": "inject",
+    "z": "tab_cat10_http",
+    "name": "Poll Trigger (5s)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "stm32/http/request",
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 120,
+    "wires": [
+      [
+        "node_http_get"
+      ]
+    ]
+  },
+  {
+    "id": "node_http_get",
+    "type": "http request",
+    "z": "tab_cat10_http",
+    "name": "GET / (ESP8266 Web Server)",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.1.105/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 420,
+    "y": 120,
+    "wires": [
+      [
+        "node_debug_resp",
+        "node_html_display"
+      ]
+    ]
+  },
+  {
+    "id": "node_debug_resp",
+    "type": "debug",
+    "z": "tab_cat10_http",
+    "name": "Debug Console Output",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 720,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "node_html_display",
+    "type": "template",
+    "z": "tab_cat10_http",
+    "name": "Extract Status",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "syntax": "mustache",
+    "template": "[Server Response Status 200 OK]: {{payload}}",
+    "output": "str",
+    "x": 700,
+    "y": 160,
+    "wires": [
+      [
+        "node_debug_status"
+      ]
+    ]
+  },
+  {
+    "id": "node_debug_status",
+    "type": "debug",
+    "z": "tab_cat10_http",
+    "name": "Formatted Status Message",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 920,
+    "y": 160,
+    "wires": []
+  }
+]

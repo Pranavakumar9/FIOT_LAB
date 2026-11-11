@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="980" height="600" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="980" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="25" y="38" fill="#ffffff" font-size="18" font-weight="bold">Task 10D: TCP Web Server &amp; 2-Step CIPSEND HTTP Response</text>
+  <text x="820" y="38" fill="#00d2d3" font-size="13" font-weight="bold">Port 80 Web Server</text>
+
+  <!-- HTTP Architecture -->
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="900" height="510" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+    <text x="30" y="30" fill="#2c3e50" font-size="14" font-weight="bold">2-STEP CIPSEND HTTP/1.1 TRANSACTION ARCHITECTURE</text>
+
+    <!-- Browser Box -->
+    <rect x="30" y="60" width="220" height="150" rx="6" fill="#2c3e50"/>
+    <text x="45" y="90" fill="#ffffff" font-size="13" font-weight="bold">Web Browser / Client</text>
+    <text x="45" y="115" fill="#bdc3c7" font-size="11">Chrome / cURL</text>
+    <text x="45" y="140" fill="#00ff00" font-family="monospace" font-size="10">GET / HTTP/1.1</text>
+    <text x="45" y="160" fill="#00ff00" font-family="monospace" font-size="10">Host: 192.168.1.105</text>
+
+    <!-- Arrow to Wemos -->
+    <path d="M 250 135 L 340 135" fill="none" stroke="#2980b9" stroke-width="3"/>
+    <text x="260" y="125" fill="#2980b9" font-size="10">TCP Port 80</text>
+
+    <!-- Wemos ESP8266 Modem -->
+    <rect x="340" y="60" width="240" height="150" rx="6" fill="#1e3799"/>
+    <text x="355" y="90" fill="#ffffff" font-size="13" font-weight="bold">Wemos ESP8266</text>
+    <text x="355" y="115" fill="#82ccdd" font-size="11">Parses TCP connection</text>
+    <text x="355" y="140" fill="#f8c291" font-family="monospace" font-size="10">+IPD,0,385:GET / ...</text>
+    <text x="355" y="165" fill="#82ccdd" font-size="11">Emits +IPD to USART1</text>
+
+    <!-- Arrow to STM32 -->
+    <path d="M 580 135 L 670 135" fill="none" stroke="#f39c12" stroke-width="3"/>
+    <text x="595" y="125" fill="#f39c12" font-size="10">USART1</text>
+
+    <!-- STM32 Application -->
+    <rect x="670" y="60" width="200" height="150" rx="6" fill="#0f2b46"/>
+    <text x="685" y="90" fill="#1abc9c" font-size="13" font-weight="bold">STM32F103 MCU</text>
+    <text x="685" y="115" fill="#bdc3c7" font-size="11">Extracts link ID (0)</text>
+    <text x="685" y="140" fill="#bdc3c7" font-size="11">Calculates HTML Length</text>
+    <text x="685" y="165" fill="#00d2d3" font-size="11">Builds HTTP Response</text>
+
+    <!-- 2-Step CIPSEND Flow below -->
+    <rect x="30" y="240" width="840" height="240" rx="6" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <text x="50" y="270" fill="#d35400" font-size="13" font-weight="bold">STEP-BY-STEP CIPSEND EXECUTION</text>
+
+    <text x="50" y="300" fill="#2c3e50" font-size="12" font-weight="bold">Step 1: Declare Payload Length</text>
+    <text x="70" y="320" fill="#2980b9" font-family="monospace" font-size="11">STM32 -&gt; ESP: AT+CIPSEND=0,165
+</text>
+    <text x="70" y="340" fill="#27ae60" font-family="monospace" font-size="11">ESP -&gt; STM32: 
+OK
+&gt; </text>
+
+    <text x="50" y="375" fill="#2c3e50" font-size="12" font-weight="bold">Step 2: Stream Raw HTTP/1.1 Payload</text>
+    <text x="70" y="395" fill="#333" font-family="monospace" font-size="11">HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 72
+
+</text>
+    <text x="70" y="415" fill="#333" font-family="monospace" font-size="11">&lt;html&gt;&lt;body&gt;&lt;h1&gt;STM32 IoT Server&lt;/h1&gt;&lt;p&gt;Status: ACTIVE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    <text x="50" y="450" fill="#2c3e50" font-size="12" font-weight="bold">Step 3: Close Connection</text>
+    <text x="70" y="468" fill="#8e44ad" font-family="monospace" font-size="11">STM32 -&gt; ESP: AT+CIPCLOSE=0
+   -&gt; Browser renders webpage instantly.</text>
+  </g>
+</svg>

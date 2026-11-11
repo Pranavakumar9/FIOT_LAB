@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="980" height="580" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="980" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="25" y="38" fill="#ffffff" font-size="18" font-weight="bold">Task 10A: Dual-UART Transparent Bridge &amp; Modem Ping</text>
+  <text x="820" y="38" fill="#00d2d3" font-size="13" font-weight="bold">STM32 + ESP8266</text>
+
+  <!-- Flow Block Diagram -->
+  <g transform="translate(60, 100)">
+    <!-- Stage 1: PC -->
+    <rect x="0" y="50" width="180" height="150" rx="6" fill="#ebedef" stroke="#2c3e50" stroke-width="2"/>
+    <text x="25" y="80" fill="#2c3e50" font-size="13" font-weight="bold">PC Serial Terminal</text>
+    <text x="25" y="105" fill="#7f8c8d" font-size="11">PuTTY / Monitor</text>
+    <text x="25" y="130" fill="#2980b9" font-size="11">COM Port @ 115200</text>
+    <text x="25" y="160" fill="#27ae60" font-size="12" font-weight="bold">Sends: "AT
+"</text>
+
+    <!-- Arrow PC to STM32 -->
+    <path d="M 180 120 L 290 120" fill="none" stroke="#2980b9" stroke-width="2.5"/>
+    <text x="200" y="110" fill="#2980b9" font-size="10">USART2</text>
+
+    <!-- Stage 2: STM32 Bridge -->
+    <rect x="290" y="30" width="300" height="200" rx="8" fill="#0f2b46" stroke="#1abc9c" stroke-width="2"/>
+    <text x="45" y="65" fill="#1abc9c" font-size="15" font-weight="bold">STM32F103 (Bridge)</text>
+    <rect x="20" y="80" width="260" height="45" rx="4" fill="#1c2833"/>
+    <text x="30" y="108" fill="#ecf0f1" font-size="11">USART2_RX -&gt; USART1_TX</text>
+    <rect x="20" y="140" width="260" height="45" rx="4" fill="#1c2833"/>
+    <text x="30" y="168" fill="#ecf0f1" font-size="11">USART1_RX -&gt; USART2_TX</text>
+
+    <!-- Arrow STM32 to Wemos -->
+    <path d="M 590 120 L 700 120" fill="none" stroke="#f39c12" stroke-width="2.5"/>
+    <text x="615" y="110" fill="#f39c12" font-size="10">USART1</text>
+
+    <!-- Stage 3: Wemos -->
+    <rect x="700" y="50" width="180" height="150" rx="6" fill="#1e3799" stroke="#4a69bd" stroke-width="2"/>
+    <text x="25" y="80" fill="#ffffff" font-size="13" font-weight="bold">Wemos ESP8266</text>
+    <text x="25" y="105" fill="#82ccdd" font-size="11">AT Firmware Core</text>
+    <text x="25" y="130" fill="#82ccdd" font-size="11">UART0 @ 115200</text>
+    <text x="25" y="160" fill="#f8c291" font-size="12" font-weight="bold">Replies: "OK
+"</text>
+  </g>
+
+  <!-- Sequence Chart below -->
+  <g transform="translate(60, 360)">
+    <rect x="0" y="0" width="880" height="190" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+    <text x="20" y="28" fill="#2c3e50" font-size="13" font-weight="bold">MODEM PING SEQUENCE TIMELINE</text>
+    
+    <line x1="100" y1="50" x2="100" y2="170" stroke="#7f8c8d" stroke-dasharray="4"/>
+    <text x="75" y="45" fill="#2c3e50" font-size="11" font-weight="bold">STM32</text>
+
+    <line x1="750" y1="50" x2="750" y2="170" stroke="#7f8c8d" stroke-dasharray="4"/>
+    <text x="710" y="45" fill="#2c3e50" font-size="11" font-weight="bold">ESP8266 WEMOS</text>
+
+    <!-- Packet 1: AT -->
+    <line x1="100" y1="80" x2="750" y2="80" stroke="#2980b9" stroke-width="2"/>
+    <polygon points="740,75 750,80 740,85" fill="#2980b9"/>
+    <text x="380" y="75" fill="#2980b9" font-size="11" font-weight="bold">"AT
+"</text>
+
+    <!-- Packet 2: Echo + OK -->
+    <line x1="750" y1="120" x2="100" y2="120" stroke="#27ae60" stroke-width="2"/>
+    <polygon points="110,115 100,120 110,125" fill="#27ae60"/>
+    <text x="360" y="115" fill="#27ae60" font-size="11" font-weight="bold">"AT
+
+OK
+"</text>
+
+    <!-- Packet 3: PC Forward -->
+    <text x="130" y="155" fill="#8e44ad" font-size="11">STM32 forwards "OK" response to PC Terminal via USART2</text>
+  </g>
+</svg>

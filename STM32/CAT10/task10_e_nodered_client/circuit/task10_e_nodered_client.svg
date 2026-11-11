@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="980" height="580" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="980" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="25" y="38" fill="#ffffff" font-size="18" font-weight="bold">Task 10E: Node-RED HTTP Client Dashboard Flow</text>
+  <text x="820" y="38" fill="#00d2d3" font-size="13" font-weight="bold">flow.json Export</text>
+
+  <!-- Node-RED Workspace -->
+  <g transform="translate(60, 90)">
+    <rect x="0" y="0" width="880" height="450" rx="8" fill="#2d3436" stroke="#636e72" stroke-width="2"/>
+    <text x="25" y="35" fill="#dfe6e9" font-size="15" font-weight="bold">Node-RED Flow: ESP8266 HTTP Polling &amp; Telemetry Display</text>
+
+    <!-- Node 1: Inject Timestamp -->
+    <g transform="translate(40, 100)">
+      <rect x="0" y="0" width="160" height="60" rx="6" fill="#0984e3" stroke="#74b9ff" stroke-width="1.5"/>
+      <circle cx="15" cy="30" r="6" fill="#ffffff"/>
+      <text x="35" y="35" fill="#ffffff" font-size="13" font-weight="bold">Inject (5s)</text>
+      <circle cx="160" cy="30" r="5" fill="#fdcb6e"/>
+    </g>
+
+    <!-- Wire 1 -->
+    <path d="M 200 130 C 240 130, 240 130, 280 130" fill="none" stroke="#fdcb6e" stroke-width="3"/>
+
+    <!-- Node 2: HTTP Request -->
+    <g transform="translate(280, 100)">
+      <rect x="0" y="0" width="220" height="60" rx="6" fill="#e17055" stroke="#fab1a0" stroke-width="1.5"/>
+      <circle cx="0" cy="30" r="5" fill="#fdcb6e"/>
+      <text x="25" y="28" fill="#ffffff" font-size="12" font-weight="bold">http request</text>
+      <text x="25" y="48" fill="#ffeaa7" font-size="10">GET http://192.168.1.105/</text>
+      <circle cx="220" cy="30" r="5" fill="#fdcb6e"/>
+    </g>
+
+    <!-- Wire 2 Split -->
+    <path d="M 500 130 C 540 130, 540 100, 580 100" fill="none" stroke="#fdcb6e" stroke-width="3"/>
+    <path d="M 500 130 C 540 130, 540 180, 580 180" fill="none" stroke="#fdcb6e" stroke-width="3"/>
+
+    <!-- Node 3: Debug Window -->
+    <g transform="translate(580, 70)">
+      <rect x="0" y="0" width="160" height="60" rx="6" fill="#00b894" stroke="#55efc4" stroke-width="1.5"/>
+      <circle cx="0" cy="30" r="5" fill="#fdcb6e"/>
+      <text x="25" y="28" fill="#ffffff" font-size="12" font-weight="bold">debug node</text>
+      <text x="25" y="48" fill="#ffffff" font-size="10">msg.payload</text>
+    </g>
+
+    <!-- Node 4: Dashboard Template / Gauge -->
+    <g transform="translate(580, 150)">
+      <rect x="0" y="0" width="220" height="60" rx="6" fill="#6c5ce7" stroke="#a29bfe" stroke-width="1.5"/>
+      <circle cx="0" cy="30" r="5" fill="#fdcb6e"/>
+      <text x="25" y="28" fill="#ffffff" font-size="12" font-weight="bold">ui_template (Status)</text>
+      <text x="25" y="48" fill="#ffffff" font-size="10">Renders HTML / Telemetry</text>
+    </g>
+
+    <!-- Output Box -->
+    <rect x="40" y="260" width="800" height="150" rx="6" fill="#1e272e" stroke="#485460" stroke-width="1.5"/>
+    <text x="60" y="290" fill="#00d2d3" font-size="12" font-weight="bold">DEBUG CONSOLE OUTPUT (msg.payload):</text>
+    <text x="60" y="320" fill="#00ff00" font-family="monospace" font-size="11">"&lt;html&gt;&lt;body&gt;&lt;h1&gt;STM32 IoT Server&lt;/h1&gt;&lt;p&gt;Status: ACTIVE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"</text>
+    <text x="60" y="350" fill="#bdc3c7" font-size="11">• Status Code: 200 OK | Content-Type: text/html</text>
+    <text x="60" y="375" fill="#bdc3c7" font-size="11">• Verified end-to-end communication from Embedded C server to Node-RED workflow.</text>
+  </g>
+</svg>

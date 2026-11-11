@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="980" height="600" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="980" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="25" y="38" fill="#ffffff" font-size="18" font-weight="bold">Task 10B: ESP8266 AT Command Suite Exploration</text>
+  <text x="820" y="38" fill="#00d2d3" font-size="13" font-weight="bold">STM32 + ESP8266</text>
+
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="900" height="510" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+    <text x="30" y="35" fill="#2c3e50" font-size="14" font-weight="bold">STANDARDIZED ESP8266 AT COMMAND REFERENCE TABLE</text>
+
+    <!-- Table Header -->
+    <rect x="20" y="55" width="860" height="35" fill="#1b2a4a"/>
+    <text x="35" y="78" fill="#ffffff" font-size="12" font-weight="bold">COMMAND</text>
+    <text x="200" y="78" fill="#ffffff" font-size="12" font-weight="bold">PURPOSE / FUNCTION</text>
+    <text x="500" y="78" fill="#ffffff" font-size="12" font-weight="bold">TYPICAL RESPONSE / SYNTAX</text>
+    <text x="750" y="78" fill="#ffffff" font-size="12" font-weight="bold">PHASE</text>
+
+    <!-- Row 1 -->
+    <rect x="20" y="90" width="860" height="45" fill="#ffffff"/>
+    <text x="35" y="118" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT</text>
+    <text x="200" y="118" fill="#333" font-size="11">Basic Modem Health Check</text>
+    <text x="500" y="118" fill="#27ae60" font-family="monospace" font-size="11">OK</text>
+    <text x="750" y="118" fill="#7f8c8d" font-size="11">Bring-Up</text>
+    <line x1="20" y1="135" x2="880" y2="135" stroke="#e0e0e0"/>
+
+    <!-- Row 2 -->
+    <rect x="20" y="135" width="860" height="45" fill="#fdfefe"/>
+    <text x="35" y="163" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+GMR</text>
+    <text x="200" y="163" fill="#333" font-size="11">Firmware Version Query</text>
+    <text x="500" y="163" fill="#27ae60" font-family="monospace" font-size="11">AT version, SDK version, OK</text>
+    <text x="750" y="163" fill="#7f8c8d" font-size="11">Diagnostics</text>
+    <line x1="20" y1="180" x2="880" y2="180" stroke="#e0e0e0"/>
+
+    <!-- Row 3 -->
+    <rect x="20" y="180" width="860" height="45" fill="#ffffff"/>
+    <text x="35" y="208" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CWMODE=1</text>
+    <text x="200" y="208" fill="#333" font-size="11">Configure as Station Mode</text>
+    <text x="500" y="208" fill="#27ae60" font-family="monospace" font-size="11">OK</text>
+    <text x="750" y="208" fill="#7f8c8d" font-size="11">Wi-Fi Config</text>
+    <line x1="20" y1="225" x2="880" y2="225" stroke="#e0e0e0"/>
+
+    <!-- Row 4 -->
+    <rect x="20" y="225" width="860" height="45" fill="#fdfefe"/>
+    <text x="35" y="253" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CWLAP</text>
+    <text x="200" y="253" fill="#333" font-size="11">Scan Available Wi-Fi APs</text>
+    <text x="500" y="253" fill="#27ae60" font-family="monospace" font-size="11">+CWLAP:(sec,"SSID",rssi,mac), OK</text>
+    <text x="750" y="253" fill="#7f8c8d" font-size="11">Discovery</text>
+    <line x1="20" y1="270" x2="880" y2="270" stroke="#e0e0e0"/>
+
+    <!-- Row 5 -->
+    <rect x="20" y="270" width="860" height="45" fill="#ffffff"/>
+    <text x="35" y="298" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CWJAP="S","P"</text>
+    <text x="200" y="298" fill="#333" font-size="11">Join Wireless Access Point</text>
+    <text x="500" y="298" fill="#27ae60" font-family="monospace" font-size="11">WIFI CONNECTED, WIFI GOT IP, OK</text>
+    <text x="750" y="298" fill="#7f8c8d" font-size="11">Association</text>
+    <line x1="20" y1="315" x2="880" y2="315" stroke="#e0e0e0"/>
+
+    <!-- Row 6 -->
+    <rect x="20" y="315" width="860" height="45" fill="#fdfefe"/>
+    <text x="35" y="343" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CIFSR</text>
+    <text x="200" y="343" fill="#333" font-size="11">Get Station IP &amp; MAC</text>
+    <text x="500" y="343" fill="#27ae60" font-family="monospace" font-size="11">+CIFSR:STAIP,"192.168.x.x", OK</text>
+    <text x="750" y="343" fill="#7f8c8d" font-size="11">Network Info</text>
+    <line x1="20" y1="360" x2="880" y2="360" stroke="#e0e0e0"/>
+
+    <!-- Row 7 -->
+    <rect x="20" y="360" width="860" height="45" fill="#ffffff"/>
+    <text x="35" y="388" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CIPMUX=1</text>
+    <text x="200" y="388" fill="#333" font-size="11">Enable Multiple Connections</text>
+    <text x="500" y="388" fill="#27ae60" font-family="monospace" font-size="11">OK</text>
+    <text x="750" y="388" fill="#7f8c8d" font-size="11">Server Prep</text>
+    <line x1="20" y1="405" x2="880" y2="405" stroke="#e0e0e0"/>
+
+    <!-- Row 8 -->
+    <rect x="20" y="405" width="860" height="45" fill="#fdfefe"/>
+    <text x="35" y="433" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CIPSERVER=1,80</text>
+    <text x="200" y="433" fill="#333" font-size="11">Create TCP Server on Port 80</text>
+    <text x="500" y="433" fill="#27ae60" font-family="monospace" font-size="11">OK</text>
+    <text x="750" y="433" fill="#7f8c8d" font-size="11">HTTP Server</text>
+    <line x1="20" y1="450" x2="880" y2="450" stroke="#e0e0e0"/>
+
+    <!-- Row 9 -->
+    <rect x="20" y="450" width="860" height="45" fill="#ffffff"/>
+    <text x="35" y="478" fill="#2980b9" font-family="monospace" font-size="11" font-weight="bold">AT+CIPSEND=id,len</text>
+    <text x="200" y="478" fill="#333" font-size="11">2-Step Data Transmission</text>
+    <text x="500" y="478" fill="#27ae60" font-family="monospace" font-size="11">&gt; [Send raw bytes] SEND OK</text>
+    <text x="750" y="478" fill="#7f8c8d" font-size="11">Payload TX</text>
+  </g>
+</svg>
