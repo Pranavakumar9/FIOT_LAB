@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="1600" height="700">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/></filter></defs>
+<rect width="1600" height="700" fill="#F8F9FA"/>
+<text x="800" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">Task 13B: BME280 I2C Sensor + ESP8266 MQTT Telemetry Publisher System</text>
+<rect x="80" y="140" width="250" height="240" rx="10" fill="#E8F8F5" stroke="#1ABC9C" stroke-width="3" filter="url(#shadow)"/>
+<text x="205.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">BME280 Module</text>
+<text x="205.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">I2C Sensor (Addr: 0x76)</text>
+<text x="205.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Bosch API Calibration</text>
+<rect x="450" y="90" width="360" height="340" rx="10" fill="#EBF5FB" stroke="#2980B9" stroke-width="3" filter="url(#shadow)"/>
+<text x="630.0" y="125" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">NUCLEO-F401RE</text>
+<text x="630.0" y="160" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Cortex-M4 Sensor Engine</text>
+<text x="630.0" y="184" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">JSON Encoder & ESPLib</text>
+<rect x="930" y="120" width="300" height="280" rx="10" fill="#FEF9E7" stroke="#F39C12" stroke-width="3" filter="url(#shadow)"/>
+<text x="1080.0" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">ESP8266 Wi-Fi</text>
+<text x="1080.0" y="190" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">MQTT Transport Client</text>
+<text x="1080.0" y="214" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Publish stm32/test/data</text>
+<rect x="450" y="480" width="360" height="120" rx="10" fill="#EAEDED" stroke="#7F8C8D" stroke-width="3" filter="url(#shadow)"/>
+<text x="630.0" y="515" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">PC Debug Console</text>
+<text x="630.0" y="550" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">USART1 ST-LINK</text>
+<text x="630.0" y="574" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">115200 8-N-1</text>
+<line x1="330" y1="200" x2="450" y2="200" stroke="#1ABC9C" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="330" cy="200" r="5" fill="#1ABC9C"/>
+<circle cx="450" cy="200" r="5" fill="#1ABC9C"/>
+<rect x="330.0" y="176.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#1ABC9C" stroke-width="1.5"/>
+<text x="390.0" y="192.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1ABC9C" text-anchor="middle">PB6 (SCL) -> SCL (4.7k Pull-up)</text>
+<line x1="330" y1="280" x2="450" y2="280" stroke="#16A085" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="330" cy="280" r="5" fill="#16A085"/>
+<circle cx="450" cy="280" r="5" fill="#16A085"/>
+<rect x="330.0" y="256.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#16A085" stroke-width="1.5"/>
+<text x="390.0" y="272.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#16A085" text-anchor="middle">PB7 (SDA) -> SDA (4.7k Pull-up)</text>
+<line x1="810" y1="210" x2="930" y2="210" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="810" cy="210" r="5" fill="#E67E22"/>
+<circle cx="930" cy="210" r="5" fill="#E67E22"/>
+<rect x="810.0" y="186.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#E67E22" stroke-width="1.5"/>
+<text x="870.0" y="202.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E67E22" text-anchor="middle">PA2 (TX) -> RX</text>
+<line x1="930" y1="290" x2="810" y2="290" stroke="#D35400" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="930" cy="290" r="5" fill="#D35400"/>
+<circle cx="810" cy="290" r="5" fill="#D35400"/>
+<rect x="810.0" y="266.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#D35400" stroke-width="1.5"/>
+<text x="870.0" y="282.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D35400" text-anchor="middle">PA3 (RX) -> TX</text>
+<line x1="630" y1="430" x2="630" y2="480" stroke="#7F8C8D" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="630" cy="430" r="5" fill="#7F8C8D"/>
+<circle cx="630" cy="480" r="5" fill="#7F8C8D"/>
+<rect x="570.0" y="431.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#7F8C8D" stroke-width="1.5"/>
+<text x="630.0" y="447.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7F8C8D" text-anchor="middle">PA9/PA10 -> Debug VCP</text>
+</svg>

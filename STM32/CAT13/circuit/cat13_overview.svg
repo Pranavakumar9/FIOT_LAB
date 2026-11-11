@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="1600" height="700">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/></filter></defs>
+<rect width="1600" height="700" fill="#F8F9FA"/>
+<text x="800" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">CAT 13: BME280 I2C + STM32 NUCLEO + ESP8266 MQTT + Node-RED Cloud Flow</text>
+<rect x="50" y="140" width="200" height="220" rx="10" fill="#E8F8F5" stroke="#1ABC9C" stroke-width="3" filter="url(#shadow)"/>
+<text x="150.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">BME280 Sensor</text>
+<text x="150.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">I2C Slave (0x76)</text>
+<text x="150.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Temp, Press, Hum</text>
+<rect x="330" y="80" width="300" height="340" rx="10" fill="#EBF5FB" stroke="#2980B9" stroke-width="3" filter="url(#shadow)"/>
+<text x="480.0" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">NUCLEO-F401RE</text>
+<text x="480.0" y="150" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Host Cortex-M4 (84MHz)</text>
+<text x="480.0" y="174" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Bosch API + ESPLib</text>
+<rect x="710" y="120" width="230" height="260" rx="10" fill="#FEF9E7" stroke="#F39C12" stroke-width="3" filter="url(#shadow)"/>
+<text x="825.0" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">ESP8266 (Wemos D1)</text>
+<text x="825.0" y="190" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Wi-Fi Coprocessor</text>
+<text x="825.0" y="214" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">AT Firmware 1.7+</text>
+<rect x="1020" y="140" width="210" height="220" rx="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="3" filter="url(#shadow)"/>
+<text x="1125.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">EMQX MQTT Broker</text>
+<text x="1125.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">broker.emqx.io:1883</text>
+<text x="1125.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Topic: stm32/test/data</text>
+<rect x="1310" y="140" width="240" height="220" rx="10" fill="#FDEDEC" stroke="#C0392B" stroke-width="3" filter="url(#shadow)"/>
+<text x="1430.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">Node-RED Dashboard</text>
+<text x="1430.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">MQTT In -> JSON -> Gauges</text>
+<text x="1430.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Min/Max/Avg Analytics</text>
+<line x1="250" y1="200" x2="330" y2="200" stroke="#1ABC9C" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="250" cy="200" r="5" fill="#1ABC9C"/>
+<circle cx="330" cy="200" r="5" fill="#1ABC9C"/>
+<rect x="230.0" y="176.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#1ABC9C" stroke-width="1.5"/>
+<text x="290.0" y="192.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1ABC9C" text-anchor="middle">PB6 (SCL) -> SCL</text>
+<line x1="250" y1="260" x2="330" y2="260" stroke="#16A085" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="250" cy="260" r="5" fill="#16A085"/>
+<circle cx="330" cy="260" r="5" fill="#16A085"/>
+<rect x="230.0" y="236.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#16A085" stroke-width="1.5"/>
+<text x="290.0" y="252.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#16A085" text-anchor="middle">PB7 (SDA) -> SDA</text>
+<line x1="630" y1="200" x2="710" y2="200" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="630" cy="200" r="5" fill="#E67E22"/>
+<circle cx="710" cy="200" r="5" fill="#E67E22"/>
+<rect x="610.0" y="176.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#E67E22" stroke-width="1.5"/>
+<text x="670.0" y="192.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E67E22" text-anchor="middle">PA2 (TX) -> RX</text>
+<line x1="710" y1="260" x2="630" y2="260" stroke="#D35400" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="710" cy="260" r="5" fill="#D35400"/>
+<circle cx="630" cy="260" r="5" fill="#D35400"/>
+<rect x="610.0" y="236.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#D35400" stroke-width="1.5"/>
+<text x="670.0" y="252.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D35400" text-anchor="middle">PA3 (RX) -> TX</text>
+<line x1="940" y1="250" x2="1020" y2="250" stroke="#8E44AD" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="940" cy="250" r="5" fill="#8E44AD"/>
+<circle cx="1020" cy="250" r="5" fill="#8E44AD"/>
+<rect x="920.0" y="226.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#8E44AD" stroke-width="1.5"/>
+<text x="980.0" y="242.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8E44AD" text-anchor="middle">TCP/IP -> Wi-Fi 2.4GHz</text>
+<line x1="1230" y1="250" x2="1310" y2="250" stroke="#C0392B" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="1230" cy="250" r="5" fill="#C0392B"/>
+<circle cx="1310" cy="250" r="5" fill="#C0392B"/>
+<rect x="1210.0" y="226.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#C0392B" stroke-width="1.5"/>
+<text x="1270.0" y="242.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#C0392B" text-anchor="middle">Subscribe -> QoS 0 Stream</text>
+</svg>

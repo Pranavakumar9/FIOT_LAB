@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="1600" height="700">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/></filter></defs>
+<rect width="1600" height="700" fill="#F8F9FA"/>
+<text x="800" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">Task 13C: Node-RED MQTT Subscriber Flow and Environmental Dashboard</text>
+<rect x="80" y="140" width="260" height="220" rx="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="3" filter="url(#shadow)"/>
+<text x="210.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">EMQX MQTT Broker</text>
+<text x="210.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">broker.emqx.io:1883</text>
+<text x="210.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Topic: stm32/test/data</text>
+<rect x="420" y="160" width="240" height="180" rx="10" fill="#EBF5FB" stroke="#3498DB" stroke-width="3" filter="url(#shadow)"/>
+<text x="540.0" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">mqtt in Node</text>
+<text x="540.0" y="230" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Topic: stm32/test/data</text>
+<text x="540.0" y="254" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">QoS 0 JSON Ingestion</text>
+<rect x="740" y="160" width="240" height="180" rx="10" fill="#FEF9E7" stroke="#F1C40F" stroke-width="3" filter="url(#shadow)"/>
+<text x="860.0" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">JSON Parser Node</text>
+<text x="860.0" y="230" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Converts Payload to</text>
+<text x="860.0" y="254" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">JavaScript Object</text>
+<rect x="1080" y="80" width="320" height="180" rx="10" fill="#E8F8F5" stroke="#2ECC71" stroke-width="3" filter="url(#shadow)"/>
+<text x="1240.0" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">Dashboard Gauges</text>
+<text x="1240.0" y="150" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Temperature (0-50 C)</text>
+<text x="1240.0" y="174" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Humidity (0-100 %RH)</text>
+<text x="1240.0" y="198" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Pressure (900-1100 hPa)</text>
+<rect x="1080" y="300" width="320" height="180" rx="10" fill="#FDEDEC" stroke="#E74C3C" stroke-width="3" filter="url(#shadow)"/>
+<text x="1240.0" y="335" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">Trend Line Chart</text>
+<text x="1240.0" y="370" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Historical Telemetry</text>
+<text x="1240.0" y="394" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">10-Minute Rolling Spline</text>
+<line x1="340" y1="250" x2="420" y2="250" stroke="#8E44AD" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="340" cy="250" r="5" fill="#8E44AD"/>
+<circle cx="420" cy="250" r="5" fill="#8E44AD"/>
+<rect x="320.0" y="226.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#8E44AD" stroke-width="1.5"/>
+<text x="380.0" y="242.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8E44AD" text-anchor="middle">TCP/IP MQTT -> QoS 0 Stream</text>
+<line x1="660" y1="250" x2="740" y2="250" stroke="#3498DB" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="660" cy="250" r="5" fill="#3498DB"/>
+<circle cx="740" cy="250" r="5" fill="#3498DB"/>
+<rect x="640.0" y="226.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#3498DB" stroke-width="1.5"/>
+<text x="700.0" y="242.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#3498DB" text-anchor="middle">Raw String -> JSON Payload</text>
+<line x1="980" y1="200" x2="1080" y2="170" stroke="#2ECC71" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="980" cy="200" r="5" fill="#2ECC71"/>
+<circle cx="1080" cy="170" r="5" fill="#2ECC71"/>
+<rect x="970.0" y="161.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#2ECC71" stroke-width="1.5"/>
+<text x="1030.0" y="177.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2ECC71" text-anchor="middle">Parsed Metrics -> Gauge Widgets</text>
+<line x1="980" y1="280" x2="1080" y2="390" stroke="#E74C3C" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="980" cy="280" r="5" fill="#E74C3C"/>
+<circle cx="1080" cy="390" r="5" fill="#E74C3C"/>
+<rect x="970.0" y="311.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#E74C3C" stroke-width="1.5"/>
+<text x="1030.0" y="327.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E74C3C" text-anchor="middle">Time Series -> Line Chart</text>
+</svg>

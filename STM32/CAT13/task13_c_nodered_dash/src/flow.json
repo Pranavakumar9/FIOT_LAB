@@ -1,0 +1,372 @@
+[
+  {
+    "id": "tab_cat13_mqtt_analytics",
+    "type": "tab",
+    "label": "CAT13 - MQTT Environmental Telemetry Dashboard",
+    "disabled": false,
+    "info": "Node-RED flow subscribing to EMQX MQTT Broker (broker.emqx.io:1883) on topic 'stm32/test/data', parsing BME280 JSON payloads and rendering dashboard gauges and analytics."
+  },
+  {
+    "id": "mqtt_broker_emqx",
+    "type": "mqtt-broker",
+    "name": "EMQX Public Broker",
+    "broker": "broker.emqx.io",
+    "port": "1883",
+    "clientid": "nodered_fiot_client_2026",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "mqtt_in_telemetry",
+    "type": "mqtt in",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "MQTT Sub (stm32/test/data)",
+    "topic": "stm32/test/data",
+    "qos": "0",
+    "datatype": "utf8",
+    "broker": "mqtt_broker_emqx",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 140,
+    "wires": [
+      [
+        "json_parser_mqtt"
+      ]
+    ]
+  },
+  {
+    "id": "json_parser_mqtt",
+    "type": "json",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Parse JSON",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 390,
+    "y": 140,
+    "wires": [
+      [
+        "debug_live_mqtt",
+        "fn_mqtt_stats",
+        "change_mqtt_temp",
+        "change_mqtt_hum",
+        "change_mqtt_press"
+      ]
+    ]
+  },
+  {
+    "id": "debug_live_mqtt",
+    "type": "debug",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Live MQTT Telemetry",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 640,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "fn_mqtt_stats",
+    "type": "function",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Running Statistics Calculator",
+    "func": "let stats = context.get('stats') || {\n    count: 0,\n    temp: { min: Infinity, max: -Infinity, sum: 0 },\n    hum:  { min: Infinity, max: -Infinity, sum: 0 },\n    press:{ min: Infinity, max: -Infinity, sum: 0 }\n};\n\nlet data = msg.payload;\nif (typeof data === 'string') {\n    try {\n        data = JSON.parse(data);\n    } catch(e) {\n        node.error(\"Invalid JSON\", msg);\n        return null;\n    }\n}\n\nlet t = parseFloat(data.temperature);\nlet h = parseFloat(data.humidity);\nlet p = parseFloat(data.pressure);\n\nif (!isNaN(t) && !isNaN(h) && !isNaN(p)) {\n    stats.count++;\n    \n    // Temperature\n    if (t < stats.temp.min) stats.temp.min = t;\n    if (t > stats.temp.max) stats.temp.max = t;\n    stats.temp.sum += t;\n    \n    // Humidity\n    if (h < stats.hum.min) stats.hum.min = h;\n    if (h > stats.hum.max) stats.hum.max = h;\n    stats.hum.sum += h;\n    \n    // Pressure\n    if (p < stats.press.min) stats.press.min = p;\n    if (p > stats.press.max) stats.press.max = p;\n    stats.press.sum += p;\n    \n    context.set('stats', stats);\n    \n    let avgT = (stats.temp.sum / stats.count).toFixed(2);\n    let avgH = (stats.hum.sum / stats.count).toFixed(2);\n    let avgP = (stats.press.sum / stats.count).toFixed(2);\n    \n    msg.statistics = {\n        samples: stats.count,\n        temperature: { min: stats.temp.min.toFixed(2), max: stats.temp.max.toFixed(2), avg: avgT },\n        humidity:    { min: stats.hum.min.toFixed(2),  max: stats.hum.max.toFixed(2),  avg: avgH },\n        pressure:    { min: stats.press.min.toFixed(2), max: stats.press.max.toFixed(2), avg: avgP }\n    };\n    \n    msg.payload = \n        \"====================================================\\n\" +\n        \" CAT13 MQTT Environmental Statistics Report       \\n\" +\n        \"====================================================\\n\" +\n        \" Parameter        Minimum    Maximum    Average     \\n\" +\n        \"----------------------------------------------------\\n\" +\n        ` Temperature (C)  ${stats.temp.min.toFixed(2).padEnd(10)} ${stats.temp.max.toFixed(2).padEnd(10)} ${avgT}\\n` +\n        ` Humidity (%RH)   ${stats.hum.min.toFixed(2).padEnd(10)} ${stats.hum.max.toFixed(2).padEnd(10)} ${avgH}\\n` +\n        ` Pressure (hPa)   ${stats.press.min.toFixed(2).padEnd(10)} ${stats.press.max.toFixed(2).padEnd(10)} ${avgP}\\n` +\n        \"==================================================== (Messages: \" + stats.count + \")\";\n        \n    return msg;\n}\n\nreturn null;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 670,
+    "y": 140,
+    "wires": [
+      [
+        "debug_stats_report"
+      ]
+    ]
+  },
+  {
+    "id": "debug_stats_report",
+    "type": "debug",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Statistics Table",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 940,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "change_mqtt_temp",
+    "type": "change",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Extract Temp",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.temperature",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 640,
+    "y": 220,
+    "wires": [
+      [
+        "ui_gauge_cat13_temp",
+        "ui_chart_cat13_trend"
+      ]
+    ]
+  },
+  {
+    "id": "change_mqtt_hum",
+    "type": "change",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Extract Hum",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.humidity",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 640,
+    "y": 280,
+    "wires": [
+      [
+        "ui_gauge_cat13_hum"
+      ]
+    ]
+  },
+  {
+    "id": "change_mqtt_press",
+    "type": "change",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Extract Press",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.pressure",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 640,
+    "y": 340,
+    "wires": [
+      [
+        "ui_gauge_cat13_press"
+      ]
+    ]
+  },
+  {
+    "id": "ui_gauge_cat13_temp",
+    "type": "ui_gauge",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Temperature Gauge",
+    "group": "group_cat13_gauges",
+    "order": 1,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Temperature",
+    "label": "°C",
+    "format": "{{value}}",
+    "min": "0",
+    "max": "50",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "28",
+    "seg2": "35",
+    "diff": false,
+    "className": "",
+    "x": 900,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_cat13_hum",
+    "type": "ui_gauge",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Humidity Gauge",
+    "group": "group_cat13_gauges",
+    "order": 2,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Humidity",
+    "label": "%RH",
+    "format": "{{value}}",
+    "min": "0",
+    "max": "100",
+    "colors": [
+      "#00b500",
+      "#5bc0de",
+      "#0275d8"
+    ],
+    "seg1": "40",
+    "seg2": "70",
+    "diff": false,
+    "className": "",
+    "x": 890,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_cat13_press",
+    "type": "ui_gauge",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Pressure Gauge",
+    "group": "group_cat13_gauges",
+    "order": 3,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Pressure",
+    "label": "hPa",
+    "format": "{{value}}",
+    "min": "900",
+    "max": "1100",
+    "colors": [
+      "#5bc0de",
+      "#00b500",
+      "#f0ad4e"
+    ],
+    "seg1": "980",
+    "seg2": "1030",
+    "diff": false,
+    "className": "",
+    "x": 890,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "ui_chart_cat13_trend",
+    "type": "ui_chart",
+    "z": "tab_cat13_mqtt_analytics",
+    "name": "Temperature History",
+    "group": "group_cat13_trends",
+    "order": 1,
+    "width": 8,
+    "height": 5,
+    "label": "MQTT Stream Temperature (°C)",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "15",
+    "ymax": "45",
+    "removeOlder": "10",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "60",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "useOldStyle": false,
+    "outputs": 1,
+    "className": "",
+    "x": 900,
+    "y": 180,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "group_cat13_gauges",
+    "type": "ui_group",
+    "name": "Real-Time MQTT Environmental Gauges",
+    "tab": "tab_cat13_ui",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "group_cat13_trends",
+    "type": "ui_group",
+    "name": "Live Telemetry Spline Trends",
+    "tab": "tab_cat13_ui",
+    "order": 2,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "tab_cat13_ui",
+    "type": "ui_tab",
+    "name": "CAT13 MQTT Dashboard",
+    "icon": "dashboard",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  }
+]

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="1600" height="700">
+<defs><filter id="shadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/></filter></defs>
+<rect width="1600" height="700" fill="#F8F9FA"/>
+<text x="800" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">Task 13A: STM32 NUCLEO-F401RE to ESP8266 MQTT Client Interface (ESPLib)</text>
+<rect x="100" y="100" width="360" height="320" rx="10" fill="#EBF5FB" stroke="#2980B9" stroke-width="3" filter="url(#shadow)"/>
+<text x="280.0" y="135" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">NUCLEO-F401RE</text>
+<text x="280.0" y="170" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">STM32F401RET6 (84 MHz)</text>
+<text x="280.0" y="194" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">ESPLib AT MQTT Client</text>
+<rect x="620" y="120" width="320" height="280" rx="10" fill="#FEF9E7" stroke="#F39C12" stroke-width="3" filter="url(#shadow)"/>
+<text x="780.0" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">ESP8266-01 / Wemos</text>
+<text x="780.0" y="190" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Wi-Fi AT Client</text>
+<text x="780.0" y="214" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">Baud: 115200 8-N-1</text>
+<rect x="1080" y="140" width="300" height="240" rx="10" fill="#F4ECF7" stroke="#8E44AD" stroke-width="3" filter="url(#shadow)"/>
+<text x="1230.0" y="175" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50" text-anchor="middle">EMQX Cloud Broker</text>
+<text x="1230.0" y="210" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">TCP Port 1883</text>
+<text x="1230.0" y="234" font-family="Arial, sans-serif" font-size="14" fill="#5D6D7E" text-anchor="middle">broker.emqx.io</text>
+<line x1="460" y1="190" x2="620" y2="190" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="460" cy="190" r="5" fill="#E67E22"/>
+<circle cx="620" cy="190" r="5" fill="#E67E22"/>
+<rect x="480.0" y="166.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#E67E22" stroke-width="1.5"/>
+<text x="540.0" y="182.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E67E22" text-anchor="middle">PA2 (USART2_TX) -> RX</text>
+<line x1="620" y1="270" x2="460" y2="270" stroke="#D35400" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="620" cy="270" r="5" fill="#D35400"/>
+<circle cx="460" cy="270" r="5" fill="#D35400"/>
+<rect x="480.0" y="246.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#D35400" stroke-width="1.5"/>
+<text x="540.0" y="262.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#D35400" text-anchor="middle">PA3 (USART2_RX) -> TX</text>
+<line x1="280" y1="420" x2="280" y2="480" stroke="#27AE60" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="280" cy="420" r="5" fill="#27AE60"/>
+<circle cx="280" cy="480" r="5" fill="#27AE60"/>
+<rect x="220.0" y="426.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#27AE60" stroke-width="1.5"/>
+<text x="280.0" y="442.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#27AE60" text-anchor="middle">PA5 (LD2) -> Heartbeat</text>
+<line x1="940" y1="260" x2="1080" y2="260" stroke="#8E44AD" stroke-width="3" stroke-dasharray="6,3"/>
+<circle cx="940" cy="260" r="5" fill="#8E44AD"/>
+<circle cx="1080" cy="260" r="5" fill="#8E44AD"/>
+<rect x="950.0" y="236.0" width="120" height="22" rx="4" fill="#FFFFFF" stroke="#8E44AD" stroke-width="1.5"/>
+<text x="1010.0" y="252.0" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8E44AD" text-anchor="middle">Wi-Fi TCP Socket -> broker.emqx.io</text>
+</svg>
