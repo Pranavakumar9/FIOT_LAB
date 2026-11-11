@@ -1,0 +1,369 @@
+[
+  {
+    "id": "tab_bme280_analytics",
+    "type": "tab",
+    "label": "CAT12 - BME280 Environmental Analytics",
+    "disabled": false,
+    "info": "Node-RED flow polling BME280 REST HTTP server on STM32 + ESP8266, computing Min/Max/Avg statistics and visualizing telemetry on Dashboard."
+  },
+  {
+    "id": "inject_poll_2s",
+    "type": "inject",
+    "z": "tab_bme280_analytics",
+    "name": "Poll Every 2s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "2",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 130,
+    "y": 140,
+    "wires": [
+      [
+        "http_get_bme280"
+      ]
+    ]
+  },
+  {
+    "id": "http_get_bme280",
+    "type": "http request",
+    "z": "tab_bme280_analytics",
+    "name": "GET / (ESP8266)",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.1.105/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 330,
+    "y": 140,
+    "wires": [
+      [
+        "json_parser"
+      ]
+    ]
+  },
+  {
+    "id": "json_parser",
+    "type": "json",
+    "z": "tab_bme280_analytics",
+    "name": "Parse JSON",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 510,
+    "y": 140,
+    "wires": [
+      [
+        "debug_raw_json",
+        "fn_calc_stats",
+        "change_temp",
+        "change_hum",
+        "change_press"
+      ]
+    ]
+  },
+  {
+    "id": "debug_raw_json",
+    "type": "debug",
+    "z": "tab_bme280_analytics",
+    "name": "Live Telemetry",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 720,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "fn_calc_stats",
+    "type": "function",
+    "z": "tab_bme280_analytics",
+    "name": "Compute Min / Max / Avg Stats",
+    "func": "// Retrieve or initialize historical statistical accumulator in context memory\nlet stats = context.get('stats') || {\n    count: 0,\n    temp: { min: Infinity, max: -Infinity, sum: 0 },\n    hum:  { min: Infinity, max: -Infinity, sum: 0 },\n    press:{ min: Infinity, max: -Infinity, sum: 0 }\n};\n\nlet data = msg.payload;\nif (typeof data === 'string') {\n    try {\n        data = JSON.parse(data);\n    } catch(e) {\n        node.error(\"Invalid JSON\", msg);\n        return null;\n    }\n}\n\nlet t = parseFloat(data.temperature);\nlet h = parseFloat(data.humidity);\nlet p = parseFloat(data.pressure);\n\nif (!isNaN(t) && !isNaN(h) && !isNaN(p)) {\n    stats.count++;\n    \n    // Temperature\n    if (t < stats.temp.min) stats.temp.min = t;\n    if (t > stats.temp.max) stats.temp.max = t;\n    stats.temp.sum += t;\n    \n    // Humidity\n    if (h < stats.hum.min) stats.hum.min = h;\n    if (h > stats.hum.max) stats.hum.max = h;\n    stats.hum.sum += h;\n    \n    // Pressure\n    if (p < stats.press.min) stats.press.min = p;\n    if (p > stats.press.max) stats.press.max = p;\n    stats.press.sum += p;\n    \n    context.set('stats', stats);\n    \n    let avgT = (stats.temp.sum / stats.count).toFixed(2);\n    let avgH = (stats.hum.sum / stats.count).toFixed(2);\n    let avgP = (stats.press.sum / stats.count).toFixed(2);\n    \n    msg.statistics = {\n        samples: stats.count,\n        temperature: { min: stats.temp.min.toFixed(2), max: stats.temp.max.toFixed(2), avg: avgT },\n        humidity:    { min: stats.hum.min.toFixed(2),  max: stats.hum.max.toFixed(2),  avg: avgH },\n        pressure:    { min: stats.press.min.toFixed(2), max: stats.press.max.toFixed(2), avg: avgP }\n    };\n    \n    msg.payload = \n        \"====================================================\\n\" +\n        \" Parameter        Minimum    Maximum    Average     \\n\" +\n        \"====================================================\\n\" +\n        ` Temperature (C)  ${stats.temp.min.toFixed(2).padEnd(10)} ${stats.temp.max.toFixed(2).padEnd(10)} ${avgT}\\n` +\n        ` Humidity (%RH)   ${stats.hum.min.toFixed(2).padEnd(10)} ${stats.hum.max.toFixed(2).padEnd(10)} ${avgH}\\n` +\n        ` Pressure (hPa)   ${stats.press.min.toFixed(2).padEnd(10)} ${stats.press.max.toFixed(2).padEnd(10)} ${avgP}\\n` +\n        \"==================================================== (Samples: \" + stats.count + \")\";\n        \n    return msg;\n}\n\nreturn null;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 140,
+    "wires": [
+      [
+        "debug_stats_table"
+      ]
+    ]
+  },
+  {
+    "id": "debug_stats_table",
+    "type": "debug",
+    "z": "tab_bme280_analytics",
+    "name": "Statistics Table",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1020,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "change_temp",
+    "type": "change",
+    "z": "tab_bme280_analytics",
+    "name": "Extract Temp",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.temperature",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 220,
+    "wires": [
+      [
+        "ui_gauge_temp",
+        "ui_chart_env"
+      ]
+    ]
+  },
+  {
+    "id": "change_hum",
+    "type": "change",
+    "z": "tab_bme280_analytics",
+    "name": "Extract Hum",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.humidity",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 280,
+    "wires": [
+      [
+        "ui_gauge_hum"
+      ]
+    ]
+  },
+  {
+    "id": "change_press",
+    "type": "change",
+    "z": "tab_bme280_analytics",
+    "name": "Extract Press",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.pressure",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 340,
+    "wires": [
+      [
+        "ui_gauge_press"
+      ]
+    ]
+  },
+  {
+    "id": "ui_gauge_temp",
+    "type": "ui_gauge",
+    "z": "tab_bme280_analytics",
+    "name": "Temperature Gauge",
+    "group": "group_bme280_gauges",
+    "order": 1,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Temperature",
+    "label": "°C",
+    "format": "{{value}}",
+    "min": "0",
+    "max": "50",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "28",
+    "seg2": "35",
+    "diff": false,
+    "className": "",
+    "x": 980,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_hum",
+    "type": "ui_gauge",
+    "z": "tab_bme280_analytics",
+    "name": "Humidity Gauge",
+    "group": "group_bme280_gauges",
+    "order": 2,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Humidity",
+    "label": "%RH",
+    "format": "{{value}}",
+    "min": "0",
+    "max": "100",
+    "colors": [
+      "#00b500",
+      "#5bc0de",
+      "#0275d8"
+    ],
+    "seg1": "40",
+    "seg2": "70",
+    "diff": false,
+    "className": "",
+    "x": 970,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_press",
+    "type": "ui_gauge",
+    "z": "tab_bme280_analytics",
+    "name": "Pressure Gauge",
+    "group": "group_bme280_gauges",
+    "order": 3,
+    "width": 4,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Pressure",
+    "label": "hPa",
+    "format": "{{value}}",
+    "min": "900",
+    "max": "1100",
+    "colors": [
+      "#5bc0de",
+      "#00b500",
+      "#f0ad4e"
+    ],
+    "seg1": "980",
+    "seg2": "1030",
+    "diff": false,
+    "className": "",
+    "x": 970,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "ui_chart_env",
+    "type": "ui_chart",
+    "z": "tab_bme280_analytics",
+    "name": "Temperature Trend",
+    "group": "group_bme280_trends",
+    "order": 1,
+    "width": 8,
+    "height": 5,
+    "label": "Temperature Over Time (°C)",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "15",
+    "ymax": "45",
+    "removeOlder": "10",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "60",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "useOldStyle": false,
+    "outputs": 1,
+    "className": "",
+    "x": 980,
+    "y": 180,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "group_bme280_gauges",
+    "type": "ui_group",
+    "name": "Environmental Gauges",
+    "tab": "tab_bme280_ui",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "group_bme280_trends",
+    "type": "ui_group",
+    "name": "Historical Trends",
+    "tab": "tab_bme280_ui",
+    "order": 2,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "tab_bme280_ui",
+    "type": "ui_tab",
+    "name": "BME280 Analytics",
+    "icon": "dashboard",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  }
+]

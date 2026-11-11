@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 780" width="1150" height="780" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1130" height="760" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1130" height="48" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">STM32 NUCLEO-F401RE &amp; BME280 I2C Environmental Sensor System</text>
+  <text x="940" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT12: Week 12 Lab</text>
+
+  <!-- Legend -->
+  <rect x="870" y="75" width="250" height="230" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="885" y="98" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT PIN CONNECTIONS</text>
+  <line x1="885" y1="104" x2="1105" y2="104" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="895" cy="122" r="5" fill="#2980b9"/>
+  <text x="910" y="126" fill="#333" font-size="12">PB6: I2C1_SCL (BME280 SCL)</text>
+  <circle cx="895" cy="144" r="5" fill="#27ae60"/>
+  <text x="910" y="148" fill="#333" font-size="12">PB7: I2C1_SDA (BME280 SDA)</text>
+  <circle cx="895" cy="166" r="5" fill="#f39c12"/>
+  <text x="910" y="170" fill="#333" font-size="12">PA9: USART1_TX -&gt; Wemos RX</text>
+  <circle cx="895" cy="188" r="5" fill="#8e44ad"/>
+  <text x="910" y="192" fill="#333" font-size="12">PA10: USART1_RX &lt;- Wemos TX</text>
+  <circle cx="895" cy="210" r="5" fill="#e74c3c"/>
+  <text x="910" y="214" fill="#333" font-size="12">3.3V / 5V: Regulated Rails</text>
+  <text x="885" y="244" fill="#7f8c8d" font-size="11" font-style="italic">BME280 Addr: 0x76 (SDO=GND)</text>
+  <text x="885" y="260" fill="#7f8c8d" font-size="11" font-style="italic">Bosch Sensor API v3.x Driver</text>
+  <text x="885" y="276" fill="#7f8c8d" font-size="11" font-style="italic">4.7k Pull-Ups on SDA &amp; SCL</text>
+
+  <!-- BME280 Sensor Module (Left) -->
+  <g transform="translate(40, 140)">
+    <rect x="0" y="0" width="220" height="340" rx="8" fill="#8e44ad" stroke="#6c3483" stroke-width="2"/>
+    <text x="25" y="35" fill="#ffffff" font-size="15" font-weight="bold">BME280 Sensor</text>
+    <text x="25" y="55" fill="#e8daef" font-size="11">Bosch Sensortec</text>
+
+    <!-- Metal Sensor Canister -->
+    <rect x="65" y="75" width="90" height="90" rx="4" fill="#bdc3c7" stroke="#7f8c8d" stroke-width="2"/>
+    <circle cx="90" cy="100" r="6" fill="#2c3e50"/>
+    <text x="75" y="145" fill="#2c3e50" font-size="10" font-weight="bold">BMP/BME</text>
+
+    <!-- Pin Headers on Right -->
+    <circle cx="205" cy="190" r="5" fill="#e74c3c"/><text x="190" y="194" fill="#ffffff" font-size="11" text-anchor="end">VCC (3.3V)</text>
+    <circle cx="205" cy="220" r="5" fill="#2c3e50"/><text x="190" y="224" fill="#ffffff" font-size="11" text-anchor="end">GND</text>
+    <circle cx="205" cy="250" r="5" fill="#2980b9"/><text x="190" y="254" fill="#ffffff" font-size="11" text-anchor="end">SCL (PB6)</text>
+    <circle cx="205" cy="280" r="5" fill="#27ae60"/><text x="190" y="284" fill="#ffffff" font-size="11" text-anchor="end">SDA (PB7)</text>
+    <circle cx="205" cy="310" r="5" fill="#bdc3c7"/><text x="190" y="314" fill="#ffffff" font-size="11" text-anchor="end">CSB (3.3V)</text>
+  </g>
+
+  <!-- Pull-Up Resistor Block -->
+  <g transform="translate(300, 180)">
+    <rect x="0" y="0" width="80" height="120" rx="4" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+    <text x="10" y="20" fill="#2c3e50" font-size="10" font-weight="bold">PULL-UPS</text>
+    <rect x="15" y="35" width="20" height="40" fill="#ffffff" stroke="#2c3e50"/>
+    <text x="18" y="58" fill="#2c3e50" font-size="9">4k7</text>
+    <rect x="45" y="35" width="20" height="40" fill="#ffffff" stroke="#2c3e50"/>
+    <text x="48" y="58" fill="#2c3e50" font-size="9">4k7</text>
+    <text x="20" y="95" fill="#e74c3c" font-size="10" font-weight="bold">3.3V</text>
+  </g>
+
+  <!-- STM32 Nucleo Board (Center) -->
+  <g transform="translate(420, 100)">
+    <rect x="0" y="0" width="300" height="600" rx="8" fill="#0f2b46" stroke="#1abc9c" stroke-width="2.5"/>
+    <text x="50" y="35" fill="#1abc9c" font-size="18" font-weight="bold">NUCLEO-F401RE</text>
+    <text x="65" y="58" fill="#bdc3c7" font-size="12">Cortex-M4 @ 84 MHz</text>
+
+    <!-- I2C1 Pins -->
+    <rect x="15" y="90" width="270" height="110" rx="6" fill="#1c2833" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="25" y="115" fill="#2980b9" font-size="12" font-weight="bold">I2C1 Peripheral (Sensor Bus)</text>
+    <circle cx="35" cy="140" r="5" fill="#2980b9"/>
+    <text x="50" y="144" fill="#ecf0f1" font-size="11">PB6 (SCL) &lt;- Clock Line</text>
+    <circle cx="35" cy="170" r="5" fill="#27ae60"/>
+    <text x="50" y="174" fill="#ecf0f1" font-size="11">PB7 (SDA) &lt;-&gt; Data Line</text>
+
+    <!-- USART1 Pins (To Wemos) -->
+    <rect x="15" y="220" width="270" height="110" rx="6" fill="#1c2833" stroke="#f39c12" stroke-width="1.5"/>
+    <text x="25" y="245" fill="#f39c12" font-size="12" font-weight="bold">USART1 (Wi-Fi Web Server)</text>
+    <circle cx="35" cy="270" r="5" fill="#f39c12"/>
+    <text x="50" y="274" fill="#ecf0f1" font-size="11">PA9 (TX1) -&gt; Wemos RX</text>
+    <circle cx="35" cy="300" r="5" fill="#8e44ad"/>
+    <text x="50" y="304" fill="#ecf0f1" font-size="11">PA10 (RX1) &lt;- Wemos TX</text>
+
+    <!-- USART2 Pins (To PC) -->
+    <rect x="15" y="350" width="270" height="90" rx="6" fill="#1c2833" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="25" y="375" fill="#27ae60" font-size="12" font-weight="bold">USART2 (ST-LINK Virtual COM)</text>
+    <circle cx="35" cy="405" r="5" fill="#27ae60"/>
+    <text x="50" y="409" fill="#ecf0f1" font-size="11">PA2 (TX) / PA3 (RX) @ 115200</text>
+  </g>
+
+  <!-- Wemos ESP8266 Modem (Right) -->
+  <g transform="translate(760, 260)">
+    <rect x="0" y="0" width="220" height="300" rx="8" fill="#1e3799" stroke="#4a69bd" stroke-width="2"/>
+    <text x="25" y="35" fill="#ffffff" font-size="15" font-weight="bold">Wemos D1 Mini</text>
+    <text x="25" y="55" fill="#82ccdd" font-size="11">ESP8266 HTTP Server</text>
+
+    <circle cx="20" cy="100" r="5" fill="#f39c12"/>
+    <text x="35" y="104" fill="#ffffff" font-size="11">RX &lt;- PA9</text>
+
+    <circle cx="20" cy="130" r="5" fill="#8e44ad"/>
+    <text x="35" y="134" fill="#ffffff" font-size="11">TX -&gt; PA10</text>
+
+    <circle cx="20" cy="160" r="5" fill="#2c3e50"/>
+    <text x="35" y="164" fill="#ffffff" font-size="11">GND</text>
+
+    <circle cx="20" cy="190" r="5" fill="#e74c3c"/>
+    <text x="35" y="194" fill="#ffffff" font-size="11">5V (VCC)</text>
+
+    <rect x="20" y="220" width="180" height="60" rx="4" fill="#0c2461"/>
+    <text x="30" y="245" fill="#00d2d3" font-size="10">TCP Server Port 80</text>
+    <text x="30" y="265" fill="#f8c291" font-size="9">JSON: {"status":"success",...}</text>
+  </g>
+
+  <!-- Wires -->
+  <!-- BME SCL to PB6 -->
+  <path d="M 245 390 L 300 390 L 300 240 L 420 240" fill="none" stroke="#2980b9" stroke-width="2.5"/>
+  <!-- BME SDA to PB7 -->
+  <path d="M 245 420 L 320 420 L 320 270 L 420 270" fill="none" stroke="#27ae60" stroke-width="2.5"/>
+  <!-- USART1 STM32 to Wemos -->
+  <line x1="720" y1="370" x2="760" y2="360" stroke="#f39c12" stroke-width="2.5"/>
+  <line x1="760" y1="390" x2="720" y2="400" stroke="#8e44ad" stroke-width="2.5"/>
+</svg>

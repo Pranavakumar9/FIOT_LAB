@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="980" height="600" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="980" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="25" y="38" fill="#ffffff" font-size="18" font-weight="bold">Task 12B: Dynamic JSON Generation &amp; HTTP Delivery Pipeline</text>
+  <text x="820" y="38" fill="#00d2d3" font-size="13" font-weight="bold">REST API on Port 80</text>
+
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="900" height="510" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+    <text x="30" y="30" fill="#2c3e50" font-size="14" font-weight="bold">END-TO-END JSON TELEMETRY SERIALIZATION &amp; HTTP DELIVERY</text>
+
+    <!-- Stage 1: Compensated Readings -->
+    <rect x="30" y="60" width="250" height="180" rx="6" fill="#ffffff" stroke="#8e44ad" stroke-width="1.5"/>
+    <text x="45" y="85" fill="#8e44ad" font-size="13" font-weight="bold">1. Compensated Data</text>
+    <text x="45" y="115" fill="#2c3e50" font-size="11">bme280_get_sensor_data()</text>
+    <text x="45" y="140" fill="#7f8c8d" font-size="10">• Temperature: 28.45 °C</text>
+    <text x="45" y="160" fill="#7f8c8d" font-size="10">• Humidity: 62.30 %</text>
+    <text x="45" y="180" fill="#7f8c8d" font-size="10">• Pressure: 1008.72 hPa</text>
+
+    <line x1="280" y1="150" x2="330" y2="150" stroke="#2c3e50" stroke-width="2"/>
+
+    <!-- Stage 2: JSON Serialization -->
+    <rect x="330" y="60" width="270" height="180" rx="6" fill="#ffffff" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="345" y="85" fill="#2980b9" font-size="13" font-weight="bold">2. JSON Serialization</text>
+    <text x="345" y="115" fill="#2c3e50" font-size="11">snprintf(json_payload, ...)</text>
+    <rect x="340" y="130" width="250" height="90" fill="#1c2833" rx="4"/>
+    <text x="345" y="150" fill="#00ff00" font-family="monospace" font-size="9">{"status":"success",</text>
+    <text x="345" y="170" fill="#00ff00" font-family="monospace" font-size="9"> "temperature":28.45,</text>
+    <text x="345" y="190" fill="#00ff00" font-family="monospace" font-size="9"> "humidity":62.30,</text>
+    <text x="345" y="210" fill="#00ff00" font-family="monospace" font-size="9"> "pressure":1008.72}</text>
+
+    <line x1="600" y1="150" x2="650" y2="150" stroke="#2c3e50" stroke-width="2"/>
+
+    <!-- Stage 3: HTTP Envelope -->
+    <rect x="650" y="60" width="220" height="180" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="665" y="85" fill="#27ae60" font-size="13" font-weight="bold">3. HTTP Envelope</text>
+    <text x="665" y="115" fill="#2c3e50" font-size="10">Content-Type: application/json</text>
+    <text x="665" y="135" fill="#27ae60" font-size="10" font-weight="bold">Content-Length: strlen(json)</text>
+    <text x="665" y="155" fill="#7f8c8d" font-size="10">Connection: close</text>
+    <text x="665" y="185" fill="#d35400" font-size="11" font-weight="bold">Calculated Length: 71 B</text>
+
+    <!-- 2-Step CIPSEND Flow below -->
+    <rect x="30" y="270" width="840" height="210" rx="6" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <text x="50" y="300" fill="#d35400" font-size="13" font-weight="bold">2-STEP CIPSEND REST API TRANSACTION</text>
+    <text x="50" y="330" fill="#2c3e50" font-size="11">1. Client Request Ingestion: +IPD,0,320:GET /data HTTP/1.1</text>
+    <text x="50" y="355" fill="#2980b9" font-family="monospace" font-size="11">2. Declare Length: AT+CIPSEND=0,165
+  -&gt;  Modem replies: '&gt; '</text>
+    <text x="50" y="380" fill="#27ae60" font-family="monospace" font-size="11">3. Stream Payload: HTTP/1.1 200 OK
+Content-Type: application/json...
+
+{"status":"success",...}</text>
+    <text x="50" y="405" fill="#8e44ad" font-family="monospace" font-size="11">4. Close Connection: AT+CIPCLOSE=0
+  -&gt;  Client receives clean JSON payload</text>
+    <text x="50" y="440" fill="#7f8c8d" font-size="10">• 100% compliant with standard REST web clients, Python scripts, cURL, and Node-RED workflows.</text>
+  </g>
+</svg>
