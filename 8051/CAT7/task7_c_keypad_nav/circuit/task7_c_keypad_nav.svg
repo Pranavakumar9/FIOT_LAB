@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="1100" height="750" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1080" height="730" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1080" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">AT89S52 16x2 HD44780 LCD (4-Bit Mode) &amp; 4x4 Keypad Interface</text>
+  <text x="910" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT7: Week 6 Lab</text>
+
+  <!-- Legend -->
+  <rect x="830" y="70" width="240" height="190" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="845" y="92" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT PIN CONNECTIONS</text>
+  <line x1="845" y1="98" x2="1055" y2="98" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="855" cy="115" r="5" fill="#2980b9"/>
+  <text x="870" y="119" fill="#333" font-size="12">P2.0: LCD RS (Register Select)</text>
+  <circle cx="855" cy="135" r="5" fill="#e67e22"/>
+  <text x="870" y="139" fill="#333" font-size="12">P2.2: LCD EN (Enable Strobe)</text>
+  <circle cx="855" cy="155" r="5" fill="#27ae60"/>
+  <text x="870" y="159" fill="#333" font-size="12">P2.4 - P2.7: LCD Data D4 - D7</text>
+  <circle cx="855" cy="175" r="5" fill="#f39c12"/>
+  <text x="870" y="179" fill="#333" font-size="12">P1.0 - P1.7: 4x4 Matrix Keypad</text>
+  <text x="845" y="210" fill="#7f8c8d" font-size="10" font-style="italic">LCD RW tied to GND (Write-only)</text>
+  <text x="845" y="225" fill="#7f8c8d" font-size="10" font-style="italic">10k Pot on V0 for Contrast</text>
+
+  <!-- Keypad Module (Left) -->
+  <g transform="translate(40, 120)">
+    <rect x="0" y="0" width="220" height="260" rx="6" fill="#fffaf0" stroke="#f39c12" stroke-width="2"/>
+    <text x="15" y="28" fill="#d35400" font-size="13" font-weight="bold">4x4 Matrix Keypad</text>
+    
+    <text x="25" y="65" fill="#333" font-size="12" font-weight="bold">[1]   [2:▲]  [3]   [A]</text>
+    <text x="25" y="105" fill="#333" font-size="12" font-weight="bold">[4:◄] [5]    [6:►] [B]</text>
+    <text x="25" y="145" fill="#333" font-size="12" font-weight="bold">[7]   [8:▼]  [9]   [C]</text>
+    <text x="25" y="185" fill="#333" font-size="12" font-weight="bold">[*]   [0]    [#]   [D]</text>
+
+    <text x="15" y="235" fill="#7f8c8d" font-size="10">Connected to Port 1 (P1.0 - P1.7)</text>
+  </g>
+
+  <!-- Bus from Keypad to MCU -->
+  <line x1="260" y1="250" x2="380" y2="250" stroke="#f39c12" stroke-width="4"/>
+  <text x="280" y="240" fill="#d35400" font-size="11" font-weight="bold">Port 1 Bus</text>
+
+  <!-- AT89S52 MCU Package Outline (Middle) -->
+  <rect x="380" y="80" width="260" height="620" rx="6" fill="#f4f6f9" stroke="#2c3e50" stroke-width="2.5"/>
+  <path d="M 490 80 A 20 20 0 0 1 530 80 Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <text x="510" y="115" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold">AT89S52</text>
+  <text x="510" y="135" text-anchor="middle" fill="#7f8c8d" font-size="12">DIP-40 Package</text>
+
+  <!-- Left Pins -->
+  <text x="395" y="200" fill="#2980b9" font-size="12" font-weight="bold">XTAL 11.0592 MHz</text>
+  <text x="395" y="260" fill="#f39c12" font-size="12" font-weight="bold">Port 1 (Keypad)</text>
+
+  <!-- Right Pins (LCD Interface) -->
+  <line x1="640" y1="200" x2="720" y2="200" stroke="#2980b9" stroke-width="2.5"/>
+  <text x="560" y="205" fill="#2c3e50" font-size="12" font-weight="bold">P2.0 (RS)</text>
+  
+  <line x1="640" y1="240" x2="720" y2="240" stroke="#e67e22" stroke-width="2.5"/>
+  <text x="560" y="245" fill="#2c3e50" font-size="12" font-weight="bold">P2.2 (EN)</text>
+
+  <line x1="640" y1="340" x2="720" y2="340" stroke="#27ae60" stroke-width="4"/>
+  <text x="530" y="345" fill="#27ae60" font-size="12" font-weight="bold">P2.4 - P2.7 (D4-D7)</text>
+
+  <!-- HD44780 16x2 LCD Module (Right) -->
+  <g transform="translate(720, 280)">
+    <rect x="0" y="0" width="340" height="280" rx="8" fill="#1e3799" stroke="#2c3e50" stroke-width="2"/>
+    <text x="20" y="30" fill="#ffffff" font-size="14" font-weight="bold">16x2 Character LCD (HD44780)</text>
+    
+    <!-- LCD Screen Bezel & Display Area -->
+    <rect x="20" y="45" width="300" height="90" rx="4" fill="#006266" stroke="#ffffff" stroke-width="1.5"/>
+    <rect x="25" y="50" width="290" height="80" rx="2" fill="#0a3d62"/>
+    <!-- Dot matrix characters on screen -->
+    <text x="35" y="80" fill="#7bed9f" font-family="Courier, monospace" font-size="16" font-weight="bold">ROW0: A         </text>
+    <text x="35" y="110" fill="#7bed9f" font-family="Courier, monospace" font-size="16" font-weight="bold">ROW1: AT89S52 OK</text>
+
+    <!-- Pin Connections List -->
+    <rect x="20" y="150" width="300" height="115" rx="4" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <text x="30" y="170" fill="#333" font-size="11" font-weight="bold">PIN CONNECTIONS (4-Bit Mode):</text>
+    <text x="30" y="190" fill="#555" font-size="10">Pin 4 (RS) &lt;- P2.0 | Pin 5 (RW) -&gt; GND | Pin 6 (E) &lt;- P2.2</text>
+    <text x="30" y="210" fill="#555" font-size="10">Pins 11-14 (D4-D7) &lt;- P2.4-P2.7 (High Nibble Bus)</text>
+    <text x="30" y="230" fill="#555" font-size="10">Pins 7-10 (D0-D3) -&gt; Unconnected / GND in 4-bit mode</text>
+    <text x="30" y="250" fill="#e74c3c" font-size="10">Pin 3 (V0) -&gt; 10k Contrast Pot | Pin 15/16 -&gt; 5V Backlight</text>
+  </g>
+
+  <!-- Footer -->
+  <rect x="40" y="660" width="1020" height="60" rx="4" fill="#eef2f7" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="682" fill="#1b2a4a" font-size="12" font-weight="bold">CAT7 CAPABILITIES: 4-bit HD44780 Driver Initialization (0x28, 0x0C, 0x06, 0x01) | lcd_goto(row, col) &amp; lcd_print_number()</text>
+  <text x="60" y="702" fill="#555" font-size="11">Interactive Character Movement via 4x4 Keypad: Key 2 (Up), Key 8 (Down), Key 4 (Left), Key 6 (Right) with bounds safety</text>
+</svg>
