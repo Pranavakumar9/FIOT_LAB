@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="1100" height="750" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1080" height="730" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1080" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">AT89S52 Hardware Timer, PWM Fading &amp; ULN2003 Stepper Interface</text>
+  <text x="910" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT5: Week 4 Lab</text>
+
+  <!-- Legend -->
+  <rect x="830" y="70" width="240" height="180" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="845" y="92" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT PIN CONNECTIONS</text>
+  <line x1="845" y1="98" x2="1055" y2="98" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="855" cy="115" r="5" fill="#27ae60"/>
+  <text x="870" y="119" fill="#333" font-size="12">P1.0: PWM Fading LED</text>
+  <circle cx="855" cy="135" r="5" fill="#2980b9"/>
+  <text x="870" y="139" fill="#333" font-size="12">P1.1: Waveform / DSO Output</text>
+  <circle cx="855" cy="155" r="5" fill="#e67e22"/>
+  <text x="870" y="159" fill="#333" font-size="12">P2.0 - P2.3: ULN2003 Stepper</text>
+  <circle cx="855" cy="175" r="5" fill="#e74c3c"/>
+  <text x="870" y="179" fill="#333" font-size="12">+5V VCC / GND</text>
+  <text x="845" y="215" fill="#7f8c8d" font-size="10" font-style="italic">Timer 0 16-bit 1ms Interrupt</text>
+
+  <!-- AT89S52 MCU Package Outline (DIP-40) -->
+  <rect x="380" y="80" width="280" height="620" rx="6" fill="#f4f6f9" stroke="#2c3e50" stroke-width="2.5"/>
+  <path d="M 500 80 A 20 20 0 0 1 540 80 Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <text x="520" y="115" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold">AT89S52</text>
+  <text x="520" y="135" text-anchor="middle" fill="#7f8c8d" font-size="12">DIP-40 Package</text>
+
+  <!-- Left Pins -->
+  <text x="390" y="220" fill="#2980b9" font-size="12" font-weight="bold">XTAL 11.0592 MHz</text>
+  <text x="390" y="240" fill="#555" font-size="10">Timer 0 Reload = 0xFC66</text>
+  <text x="390" y="260" fill="#555" font-size="10">Tmachine = 1.085 µs</text>
+
+  <!-- Right Pins (P1.0, P1.1, P2.0-P2.3) -->
+  <line x1="660" y1="200" x2="740" y2="200" stroke="#27ae60" stroke-width="2.5"/>
+  <text x="600" y="205" fill="#2c3e50" font-size="12" font-weight="bold">P1.0 (Pin 1)</text>
+  
+  <line x1="660" y1="260" x2="740" y2="260" stroke="#2980b9" stroke-width="2.5"/>
+  <text x="600" y="265" fill="#2c3e50" font-size="12" font-weight="bold">P1.1 (Pin 2)</text>
+
+  <line x1="660" y1="460" x2="740" y2="460" stroke="#e67e22" stroke-width="3"/>
+  <text x="580" y="465" fill="#2c3e50" font-size="12" font-weight="bold">P2.0 - P2.3 (Pins 21-24)</text>
+
+  <!-- PWM Fading LED Box (Right Top) -->
+  <g transform="translate(740, 160)">
+    <rect x="0" y="0" width="280" height="70" rx="4" fill="#fcfcfc" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="10" y="20" fill="#27ae60" font-size="11" font-weight="bold">Software PWM LED Fading (P1.0)</text>
+    <text x="10" y="40" fill="#333" font-size="10">Active-LOW Sink: 330Ω to +5V VCC</text>
+    <text x="10" y="58" fill="#555" font-size="9">Duty cycle dynamically varied 0% to 100% to 0%</text>
+  </g>
+
+  <!-- Waveform Generator / DSO Probe (Right Middle) -->
+  <g transform="translate(740, 245)">
+    <rect x="0" y="0" width="280" height="70" rx="4" fill="#fcfcfc" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="10" y="20" fill="#2980b9" font-size="11" font-weight="bold">Signal Output Pin (P1.1 to DSO)</text>
+    <text x="10" y="40" fill="#333" font-size="10">Square, Duty Cycle, Pulse Train, Burst Signal</text>
+    <text x="10" y="58" fill="#555" font-size="9">Selectable: 100 Hz, 500 Hz, 1 kHz, 2 kHz, 5 kHz</text>
+  </g>
+
+  <!-- ULN2003 & Stepper Motor Box (Right Bottom) -->
+  <g transform="translate(740, 410)">
+    <rect x="0" y="0" width="320" height="230" rx="6" fill="#fffaf0" stroke="#e67e22" stroke-width="2"/>
+    <text x="15" y="24" fill="#d35400" font-size="13" font-weight="bold">ULN2003 Driver &amp; 28BYJ-48 Stepper</text>
+    
+    <!-- ULN2003 IC box -->
+    <rect x="15" y="40" width="120" height="150" rx="4" fill="#ffffff" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="35" y="60" fill="#2c3e50" font-size="11" font-weight="bold">ULN2003A</text>
+    <text x="25" y="85" fill="#333" font-size="9">IN1 -> OUT1</text>
+    <text x="25" y="105" fill="#333" font-size="9">IN2 -> OUT2</text>
+    <text x="25" y="125" fill="#333" font-size="9">IN3 -> OUT3</text>
+    <text x="25" y="145" fill="#333" font-size="9">IN4 -> OUT4</text>
+    <text x="25" y="170" fill="#e74c3c" font-size="9">COM -> +5V</text>
+
+    <!-- Stepper Motor Symbol -->
+    <circle cx="230" cy="115" r="50" fill="#f4f6f9" stroke="#d35400" stroke-width="2"/>
+    <text x="205" y="110" fill="#d35400" font-size="12" font-weight="bold">Stepper</text>
+    <text x="200" y="130" fill="#333" font-size="10">28BYJ-48</text>
+
+    <text x="15" y="210" fill="#555" font-size="10">Sequence: 1000 -> 0100 -> 0010 -> 0001 (10-100 ms)</text>
+  </g>
+
+  <!-- Footer -->
+  <rect x="40" y="660" width="1020" height="60" rx="4" fill="#eef2f7" stroke="#2c3e50" stroke-width="1"/>
+  <text x="60" y="682" fill="#1b2a4a" font-size="12" font-weight="bold">CAT5 CORE OBJECTIVES: Non-blocking Timer 0 Time Base (1.0 ms) | Software PWM LED Fading (500 Hz)</text>
+  <text x="60" y="702" fill="#555" font-size="11">Variable Frequency Signal Generation (100 Hz to 5 kHz) | Stepper Motor Step Speed Regulation (10 ms, 50 ms, 100 ms)</text>
+</svg>
