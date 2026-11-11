@@ -1,0 +1,47 @@
+================================================================================
+AT89S52 HARDWARE BOARD BRING-UP LOG & VERIFICATION SHEET
+Course: 25CS2741 - Fundamentals of IoT + Lab
+Evaluation: CAT2 (Week 2 - 20/07/2026)
+Target MCU: Atmel AT89S52 (40-pin DIP)
+Host Interface: USB-to-ISP Programmer (AVR/8051 USB-ISP v2.0)
+================================================================================
+
+1. COMPONENT & HARDWARE IDENTIFICATION
+--------------------------------------------------------------------------------
+Parameter                  Observation / Specification
+--------------------------------------------------------------------------------
+Target Microcontroller     Atmel AT89S52-24PU (40-pin Dual In-line Package)
+Core Architecture          8-bit CISC MCS-51 core, 8 KB ISP Flash, 256B RAM
+Nominal Core Frequency     11.0592 MHz Crystal Oscillator (XTAL1=Pin 19, XTAL2=Pin 18)
+Machine Cycle Duration     12 clock periods = 12 / 11.0592 MHz = 1.085069 microseconds
+Power Input Source         USB +5V Regulated Bus / External 9V DC Adapter via LM7805
+Programmer Interface       10-pin standard ISP ribbon cable (SPI mode)
+Programmer Signals         MOSI (P1.5), MISO (P1.6), SCK (P1.7), RST (Pin 9), VCC, GND
+User Diagnostic LED        1x 3mm Green LED connected to Port 2 Pin 0 (P2.0 / Pin 21)
+LED Active Topology        Active-LOW (Sink configuration): Anode -> 330R -> +5V, Cathode -> P2.0
+Reset Circuitry            10 uF Electrolytic Capacitor to VCC, 8.2 kR Resistor to GND,
+                           Tactile momentary pushbutton in parallel with capacitor.
+
+2. POWER RAIL MULTIMETER MEASUREMENT VERIFICATION
+--------------------------------------------------------------------------------
+Test Point                 Nominal (V)   Measured (V)   Tolerance   Status
+--------------------------------------------------------------------------------
+TP1 (LM7805 Pin 1 / Vin)    +9.00 V DC     +8.94 V DC    +/- 10%     PASS
+TP2 (VCC Pin 40 to Pin 20)  +5.00 V DC     +4.98 V DC    +/- 5%      PASS
+TP3 (RST Pin 9 steady-state) 0.00 V DC      +0.02 V DC    < 0.5 V     PASS (Active-HIGH Reset idle)
+TP4 (EA/VPP Pin 31 to GND)  +5.00 V DC     +4.98 V DC    Tied High   PASS (Internal ROM enabled)
+TP5 (XTAL2 Pin 18 to GND)   ~2.20 V DC     +2.16 V DC    Oscillating PASS (Active clock output)
+
+3. HOST COMMUNICATION & SIGNATURE READ
+--------------------------------------------------------------------------------
+Programmer Software: ProgISP v1.72 / avrdude
+Command line probe: avrdude -c usbasp -p 89s52
+Detected Signature Bytes:
+  0x1E (Atmel Manufacturer Code)
+  0x52 (AT89S52 Device Code)
+  0x06 (Revision Code)
+Flash Memory Read / Verify Checksum: PASS (8192 bytes accessible)
+Lock Bits Status: LB1=Unprogrammed, LB2=Unprogrammed, LB3=Unprogrammed
+
+Bring-up verified by Technical Lead. Board cleared for firmware deployment.
+================================================================================

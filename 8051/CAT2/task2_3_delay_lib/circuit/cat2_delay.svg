@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 650" width="950" height="650" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <!-- Title & Border -->
+  <rect x="10" y="10" width="930" height="630" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="930" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">AT89S52 Hardware Bring-Up &amp; Bare-Metal LED Circuit</text>
+  <text x="730" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT2: Week 2 Lab</text>
+
+  <!-- Legend Box -->
+  <rect x="700" y="70" width="220" height="150" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="715" y="92" fill="#2c3e50" font-size="13" font-weight="bold">CIRCUIT LEGEND</text>
+  <line x1="715" y1="98" x2="905" y2="98" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="725" cy="115" r="5" fill="#e74c3c"/>
+  <text x="740" y="119" fill="#333" font-size="12">VCC (+5.0V Rail)</text>
+  <circle cx="725" cy="135" r="5" fill="#2c3e50"/>
+  <text x="740" y="139" fill="#333" font-size="12">GND (0V Ground)</text>
+  <circle cx="725" cy="155" r="5" fill="#27ae60"/>
+  <text x="740" y="159" fill="#333" font-size="12">Active-LOW LED (P2.0)</text>
+  <circle cx="725" cy="175" r="5" fill="#2980b9"/>
+  <text x="740" y="179" fill="#333" font-size="12">ISP Header / Crystal</text>
+  <text x="715" y="205" fill="#7f8c8d" font-size="10" font-style="italic">Note: Assumed P2.0 for User LED</text>
+
+  <!-- MCU Package Outline (DIP-40) -->
+  <rect x="300" y="80" width="280" height="520" rx="6" fill="#f4f6f9" stroke="#2c3e50" stroke-width="2.5"/>
+  <path d="M 420 80 A 20 20 0 0 1 460 80 Z" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <text x="440" y="115" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold">AT89S52</text>
+  <text x="440" y="135" text-anchor="middle" fill="#7f8c8d" font-size="12">DIP-40 Package</text>
+
+  <!-- Left Pins -->
+  <!-- Pin 9: RST -->
+  <line x1="240" y1="180" x2="300" y2="180" stroke="#e67e22" stroke-width="2"/>
+  <text x="310" y="185" fill="#2c3e50" font-size="12" font-weight="bold">9 (RST)</text>
+  <!-- Pin 18, 19: XTAL2, XTAL1 -->
+  <line x1="240" y1="300" x2="300" y2="300" stroke="#2980b9" stroke-width="2"/>
+  <text x="310" y="305" fill="#2c3e50" font-size="12" font-weight="bold">18 (XTAL2)</text>
+  <line x1="240" y1="340" x2="300" y2="340" stroke="#2980b9" stroke-width="2"/>
+  <text x="310" y="345" fill="#2c3e50" font-size="12" font-weight="bold">19 (XTAL1)</text>
+  <!-- Pin 20: GND -->
+  <line x1="240" y1="560" x2="300" y2="560" stroke="#2c3e50" stroke-width="3"/>
+  <text x="310" y="565" fill="#2c3e50" font-size="12" font-weight="bold">20 (GND)</text>
+
+  <!-- Right Pins -->
+  <!-- Pin 40: VCC -->
+  <line x1="580" y1="120" x2="640" y2="120" stroke="#e74c3c" stroke-width="3"/>
+  <text x="525" y="125" fill="#2c3e50" font-size="12" font-weight="bold">40 (VCC)</text>
+  <!-- Pin 31: EA/VPP -->
+  <line x1="580" y1="160" x2="640" y2="160" stroke="#e74c3c" stroke-width="2"/>
+  <text x="500" y="165" fill="#2c3e50" font-size="12" font-weight="bold">31 (EA/VPP)</text>
+  <!-- Pin 21: P2.0 -->
+  <line x1="580" y1="360" x2="650" y2="360" stroke="#27ae60" stroke-width="2.5"/>
+  <text x="525" y="365" fill="#2c3e50" font-size="12" font-weight="bold">21 (P2.0)</text>
+
+  <!-- Power Rails Connections -->
+  <line x1="640" y1="120" x2="640" y2="160" stroke="#e74c3c" stroke-width="2.5"/>
+  <line x1="640" y1="120" x2="670" y2="120" stroke="#e74c3c" stroke-width="2.5"/>
+  <circle cx="670" cy="120" r="4" fill="#e74c3c"/>
+  <text x="680" y="125" fill="#e74c3c" font-size="13" font-weight="bold">+5.0V VCC</text>
+
+  <!-- Ground Connection -->
+  <line x1="240" y1="560" x2="190" y2="560" stroke="#2c3e50" stroke-width="3"/>
+  <line x1="190" y1="550" x2="190" y2="570" stroke="#2c3e50" stroke-width="3"/>
+  <line x1="180" y1="555" x2="180" y2="565" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="170" y1="558" x2="170" y2="562" stroke="#2c3e50" stroke-width="1.5"/>
+  <text x="150" y="590" fill="#2c3e50" font-size="12" font-weight="bold">GND (0V)</text>
+
+  <!-- Reset Circuit (Left) -->
+  <rect x="80" y="140" width="130" height="100" rx="4" fill="#ffffff" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="95" y="160" fill="#2c3e50" font-size="11" font-weight="bold">Power-On Reset</text>
+  <text x="95" y="180" fill="#555" font-size="10">10µF Cap to +5V</text>
+  <text x="95" y="198" fill="#555" font-size="10">8.2kΩ Res to GND</text>
+  <text x="95" y="216" fill="#555" font-size="10">Manual Tact Switch</text>
+  <line x1="210" y1="180" x2="240" y2="180" stroke="#e67e22" stroke-width="2"/>
+
+  <!-- Crystal Oscillator (Left) -->
+  <rect x="70" y="280" width="140" height="90" rx="4" fill="#ffffff" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="80" y="305" fill="#2980b9" font-size="12" font-weight="bold">11.0592 MHz Crystal</text>
+  <text x="80" y="325" fill="#555" font-size="10">XTAL1 &amp; XTAL2</text>
+  <text x="80" y="345" fill="#555" font-size="10">Two 33pF Caps to GND</text>
+  <line x1="210" y1="300" x2="240" y2="300" stroke="#2980b9" stroke-width="2"/>
+  <line x1="210" y1="340" x2="240" y2="340" stroke="#2980b9" stroke-width="2"/>
+
+  <!-- LED Circuit (Right) -->
+  <g transform="translate(650, 310)">
+    <rect x="0" y="0" width="270" height="120" rx="6" fill="#fcfcfc" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="15" y="24" fill="#27ae60" font-size="12" font-weight="bold">Active-LOW LED Configuration</text>
+    
+    <!-- Wire from P2.0 -->
+    <line x1="0" y1="50" x2="35" y2="50" stroke="#27ae60" stroke-width="2"/>
+    <text x="10" y="70" fill="#2c3e50" font-size="10">From P2.0</text>
+    
+    <!-- LED Symbol -->
+    <path d="M 45 35 L 45 65 L 75 50 Z" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+    <line x1="45" y1="35" x2="45" y2="65" stroke="#27ae60" stroke-width="2"/>
+    <line x1="75" y1="35" x2="75" y2="65" stroke="#27ae60" stroke-width="2"/>
+    <!-- LED arrows -->
+    <line x1="55" y1="30" x2="65" y2="20" stroke="#e67e22" stroke-width="1.5"/>
+    <line x1="62" y1="30" x2="72" y2="20" stroke="#e67e22" stroke-width="1.5"/>
+    
+    <!-- Wire to Resistor -->
+    <line x1="75" y1="50" x2="110" y2="50" stroke="#27ae60" stroke-width="2"/>
+    
+    <!-- Resistor Symbol -->
+    <rect x="110" y="42" width="60" height="16" fill="#f1c40f" stroke="#d35400" stroke-width="1.5"/>
+    <text x="122" y="54" fill="#333" font-size="10" font-weight="bold">330 Ω</text>
+    <text x="115" y="75" fill="#7f8c8d" font-size="9">Current Limiting</text>
+    
+    <!-- Wire to +5V -->
+    <line x1="170" y1="50" x2="220" y2="50" stroke="#e74c3c" stroke-width="2"/>
+    <circle cx="220" cy="50" r="4" fill="#e74c3c"/>
+    <text x="228" y="54" fill="#e74c3c" font-size="11" font-weight="bold">+5V (VCC)</text>
+    
+    <text x="15" y="105" fill="#555" font-size="10">Current sinks into MCU when P2.0 = 0 (ON)</text>
+  </g>
+
+  <!-- Multimeter Probing Box (Bottom) -->
+  <rect x="300" y="460" width="280" height="50" rx="4" fill="#fff9db" stroke="#f59f00" stroke-width="1.5"/>
+  <text x="315" y="482" fill="#d9480f" font-size="11" font-weight="bold">DMM Rail Measurement: 4.98 V DC (PASS)</text>
+  <text x="315" y="498" fill="#495057" font-size="10">VCC Pin 40 to GND Pin 20 measured with DMM</text>
+</svg>
