@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="1100" height="750" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+  <rect x="10" y="10" width="1080" height="730" rx="8" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+  <rect x="10" y="10" width="1080" height="45" rx="8" fill="#1b2a4a"/>
+  <text x="30" y="38" fill="#ffffff" font-size="20" font-weight="bold">STM32F103C8T6 (Blue Pill) GPIO Bring-Up &amp; Switch-Controlled LED</text>
+  <text x="900" y="38" fill="#00d2d3" font-size="14" font-weight="bold">CAT8: Week 7 Lab</text>
+
+  <!-- Legend Box -->
+  <rect x="810" y="70" width="260" height="200" rx="6" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="1.5"/>
+  <text x="825" y="92" fill="#2c3e50" font-size="13" font-weight="bold">ELECTRICAL NET LEGEND</text>
+  <line x1="825" y1="98" x2="1055" y2="98" stroke="#bdc3c7" stroke-width="1"/>
+  <circle cx="835" cy="118" r="5" fill="#e74c3c"/>
+  <text x="850" y="122" fill="#333" font-size="12">+3.3V VDD Regulated Power Rail</text>
+  <circle cx="835" cy="140" r="5" fill="#2c3e50"/>
+  <text x="850" y="144" fill="#333" font-size="12">GND (0V Reference Ground)</text>
+  <circle cx="835" cy="162" r="5" fill="#27ae60"/>
+  <text x="850" y="166" fill="#333" font-size="12">PC13: Active-LOW User LED</text>
+  <circle cx="835" cy="184" r="5" fill="#2980b9"/>
+  <text x="850" y="188" fill="#333" font-size="12">PC14: Tactile Button (Pull-Up)</text>
+  <circle cx="835" cy="206" r="5" fill="#8e44ad"/>
+  <text x="850" y="210" fill="#333" font-size="12">SWDIO / SWCLK (ST-Link V2)</text>
+  <text x="825" y="240" fill="#7f8c8d" font-size="10" font-style="italic">* HSE 8 MHz x9 PLL = 72 MHz SYSCLK</text>
+  <text x="825" y="255" fill="#7f8c8d" font-size="10" font-style="italic">* Non-blocking SysTick via HAL_GetTick()</text>
+
+  <!-- Left: Active-LOW LED Circuit (PC13) & Tactile Switch (PC14) -->
+  <g transform="translate(40, 90)">
+    <rect x="0" y="0" width="280" height="230" rx="6" fill="#f0fff4" stroke="#27ae60" stroke-width="2"/>
+    <text x="15" y="26" fill="#1e8449" font-size="14" font-weight="bold">On-Board User LED (PC13)</text>
+    <text x="20" y="55" fill="#e74c3c" font-size="12" font-weight="bold">+3.3V VDD Rail</text>
+    <line x1="80" y1="65" x2="80" y2="95" stroke="#e74c3c" stroke-width="2.5"/>
+    <rect x="65" y="95" width="30" height="45" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+    <text x="105" y="122" fill="#333" font-size="11" font-weight="bold">R_LED = 510 Ω</text>
+    <line x1="80" y1="140" x2="80" y2="165" stroke="#27ae60" stroke-width="2.5"/>
+    <polygon points="65,165 95,165 80,190" fill="#2ecc71" stroke="#1e8449" stroke-width="2"/>
+    <line x1="65" y1="190" x2="95" y2="190" stroke="#1e8449" stroke-width="2.5"/>
+    <text x="105" y="182" fill="#1e8449" font-size="12" font-weight="bold">Green LED (Active-LOW)</text>
+    <text x="20" y="215" fill="#555" font-size="11">PC13 = LOW (0V) -&gt; LED ON (Sinks ~2.5 mA)</text>
+  </g>
+
+  <line x1="120" y1="280" x2="400" y2="220" stroke="#27ae60" stroke-width="3"/>
+  <text x="275" y="235" fill="#1e8449" font-size="11" font-weight="bold">PC13 (Sink Output)</text>
+
+  <!-- Tactile Button Module (Bottom Left) -->
+  <g transform="translate(40, 350)">
+    <rect x="0" y="0" width="280" height="250" rx="6" fill="#ebf5fb" stroke="#2980b9" stroke-width="2"/>
+    <text x="15" y="26" fill="#1f618d" font-size="14" font-weight="bold">Push-Button Switch (PC14)</text>
+    <text x="20" y="55" fill="#e74c3c" font-size="12" font-weight="bold">+3.3V (Internal Pull-Up ~40 kΩ)</text>
+    <line x1="80" y1="65" x2="80" y2="95" stroke="#e74c3c" stroke-width="2"/>
+    <rect x="65" y="95" width="30" height="40" fill="#ffffff" stroke="#2980b9" stroke-width="2"/>
+    <text x="105" y="120" fill="#1f618d" font-size="11" font-weight="bold">R_PU (GPIO_PULLUP)</text>
+    <line x1="80" y1="135" x2="80" y2="165" stroke="#2980b9" stroke-width="2.5"/>
+    <circle cx="80" cy="165" r="4" fill="#2980b9"/>
+    <text x="100" y="168" fill="#1f618d" font-size="12" font-weight="bold">Node -&gt; PC14 Input</text>
+    <!-- Switch Contacts -->
+    <line x1="65" y1="185" x2="95" y2="170" stroke="#2c3e50" stroke-width="3"/>
+    <text x="105" y="190" fill="#333" font-size="11" font-weight="bold">SW1 (Tactile SPST-NO)</text>
+    <line x1="80" y1="195" x2="80" y2="220" stroke="#2c3e50" stroke-width="2.5"/>
+    <line x1="65" y1="220" x2="95" y2="220" stroke="#2c3e50" stroke-width="2.5"/>
+    <text x="105" y="225" fill="#2c3e50" font-size="11" font-weight="bold">GND (Pressed = 0V)</text>
+  </g>
+
+  <line x1="320" y1="515" x2="400" y2="265" stroke="#2980b9" stroke-width="3"/>
+  <text x="295" y="385" fill="#1f618d" font-size="11" font-weight="bold">PC14 (Input)</text>
+
+  <!-- Center: STM32F103C8T6 Blue Pill Module -->
+  <rect x="400" y="80" width="340" height="530" rx="8" fill="#1e3799" stroke="#2c3e50" stroke-width="3"/>
+  <rect x="490" y="80" width="160" height="25" rx="3" fill="#bdc3c7" stroke="#2c3e50" stroke-width="1.5"/>
+  <text x="570" y="97" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Micro-USB 5V Power</text>
+
+  <text x="570" y="135" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="bold">STM32F103C8T6</text>
+  <text x="570" y="155" text-anchor="middle" fill="#7bed9f" font-size="12" font-weight="bold">Blue Pill (ARM Cortex-M3 @ 72 MHz)</text>
+
+  <!-- LQFP48 Die Representation -->
+  <rect x="485" y="220" width="170" height="170" rx="4" fill="#2c3e50" stroke="#f1c40f" stroke-width="2"/>
+  <circle cx="502" cy="237" r="4" fill="#f1c40f"/>
+  <text x="570" y="295" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">STM32F103</text>
+  <text x="570" y="315" text-anchor="middle" fill="#00d2d3" font-size="11">LQFP-48 Package</text>
+  <text x="570" y="335" text-anchor="middle" fill="#bdc3c7" font-size="10">64 KB Flash / 20 KB SRAM</text>
+
+  <!-- Left Header Pins -->
+  <text x="415" y="190" fill="#f1c40f" font-size="12" font-weight="bold">VBAT</text>
+  <text x="415" y="225" fill="#7bed9f" font-size="12" font-weight="bold">PC13 (LED_OUT)</text>
+  <text x="415" y="265" fill="#82ccdd" font-size="12" font-weight="bold">PC14 (BTN_IN)</text>
+  <text x="415" y="305" fill="#ffffff" font-size="12">PC15 (OSC32_OUT)</text>
+  <text x="415" y="345" fill="#ffffff" font-size="12">PA0 - PA7</text>
+  <text x="415" y="450" fill="#e74c3c" font-size="12" font-weight="bold">3.3V VDD</text>
+  <text x="415" y="485" fill="#bdc3c7" font-size="12" font-weight="bold">GND</text>
+
+  <!-- Right Header Pins & SWD Header -->
+  <text x="640" y="450" fill="#e74c3c" font-size="12" font-weight="bold">+5V / 3.3V</text>
+  <text x="640" y="485" fill="#bdc3c7" font-size="12" font-weight="bold">GND</text>
+  <rect x="470" y="545" width="200" height="45" rx="4" fill="#3c6382" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="570" y="565" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">4-Pin SWD Debug Header</text>
+  <text x="570" y="582" text-anchor="middle" fill="#f8c291" font-size="10">3.3V | SWDIO (PA13) | SWCLK (PA14) | GND</text>
+
+  <!-- Right Bottom: ST-Link V2 Programmer & Task Summary -->
+  <g transform="translate(810, 300)">
+    <rect x="0" y="0" width="260" height="310" rx="6" fill="#f5eef8" stroke="#8e44ad" stroke-width="2"/>
+    <text x="15" y="28" fill="#6c3483" font-size="14" font-weight="bold">ST-Link V2 SWD Debugger</text>
+    <text x="20" y="58" fill="#333" font-size="12">SWDIO &lt;-&gt; PA13 (Serial Wire Data)</text>
+    <text x="20" y="82" fill="#333" font-size="12">SWCLK &lt;-&gt; PA14 (Serial Wire Clock)</text>
+    <text x="20" y="106" fill="#e74c3c" font-size="12">3.3V  &lt;-&gt; Target 3.3V Supply</text>
+    <text x="20" y="130" fill="#2c3e50" font-size="12">GND   &lt;-&gt; Common Ground</text>
+    <line x1="15" y1="148" x2="245" y2="148" stroke="#d2b4de" stroke-width="1.5"/>
+    <text x="15" y="172" fill="#6c3483" font-size="12" font-weight="bold">CAT8 SUB-TASK MODES:</text>
+    <text x="15" y="196" fill="#333" font-size="11">• 8A: Direct Poll (LED = Switch)</text>
+    <text x="15" y="220" fill="#333" font-size="11">• 8B: 30ms FSM Debounce Toggle</text>
+    <text x="15" y="244" fill="#333" font-size="11">• 8C: Duration Classifier:</text>
+    <text x="25" y="264" fill="#555" font-size="10">- Short (&lt;1s): Toggle / Stop Blink</text>
+    <text x="25" y="282" fill="#555" font-size="10">- Long (&gt;=1s): 500ms Blink Mode</text>
+  </g>
+
+  <line x1="670" y1="568" x2="810" y2="410" stroke="#8e44ad" stroke-width="3" stroke-dasharray="6,4"/>
+
+  <!-- Footer -->
+  <rect x="40" y="645" width="1030" height="70" rx="4" fill="#eef2f7" stroke="#2c3e50" stroke-width="1"/>
+  <text x="55" y="670" fill="#1b2a4a" font-size="13" font-weight="bold">STM32 HAL FUNCTIONS UTILIZED: HAL_GPIO_ReadPin() | HAL_GPIO_WritePin() | HAL_GPIO_TogglePin() | HAL_GetTick()</text>
+  <text x="55" y="695" fill="#555" font-size="11">Strict Non-Blocking Constraint: Task 8C measures press duration (t_release - t_start) via SysTick without calling HAL_Delay().</text>
+</svg>
